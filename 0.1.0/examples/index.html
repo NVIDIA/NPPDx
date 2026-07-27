@@ -1,0 +1,806 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Examples &#8212; NPPDx</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/nvidia-sphinx-theme.css?v=933278ad" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+
+
+
+    <script src="../_static/documentation_options.js?v=2caa9db7"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'examples/index';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.20.0';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://nvidia.github.io/NPPDx/_static/switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '0.1.0';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner =
+            false;
+        </script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+
+    <link rel="icon" href="../_static/nvidia.ico"/>
+
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="License" href="../license.html" />
+    <link rel="prev" title="Execution Methods (Device API)" href="../api/methods.html" />
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.1.0" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+
+
+  </head>
+
+  <body data-default-mode="">
+
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/nvidia-logo-horiz-rgb-blk-for-screen.svg" class="logo__image only-light" alt="NPPDx - Home"/>
+    <img src="../_static/nvidia-logo-horiz-rgb-wht-for-screen.svg" class="logo__image only-dark pst-js-only" alt="NPPDx - Home"/>
+  
+  
+    <p class="title logo__title">NPPDx</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+
+
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/nvidia-logo-horiz-rgb-blk-for-screen.svg" class="logo__image only-light" alt="NPPDx - Home"/>
+    <img src="../_static/nvidia-logo-horiz-rgb-wht-for-screen.svg" class="logo__image only-dark pst-js-only" alt="NPPDx - Home"/>
+  
+  
+    <p class="title logo__title">NPPDx</p>
+  
+</a>
+
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+
+
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Table of Contents">
+  <p class="bd-links__title" role="heading" aria-level="1">Table of Contents</p>
+  <div class="bd-toc-item navbar-nav"><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Home</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../get_started/requirement.html">Requirements and Functionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/introduction.html">Using NPPDx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/performance.html">Achieving High Performance</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../api/operators.html">Operators</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api/processing_steps.html">Processing overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/processing_steps_io.html">I/O steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/processing_steps_pointwise.html">Pointwise processing steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/processing_steps_area.html">Area processing steps</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/traits.html">Traits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/methods.html">Execution Methods</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Examples List</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://github.com/NVIDIA/NPPDx">GitHub Repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">MathDx</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://developer.nvidia.com/cublasdx-downloads">cuBLASDx</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://developer.nvidia.com/cufftdx-downloads">cuFFTDx</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://developer.nvidia.com/cusolverdx-downloads">cuSolverDx</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://developer.nvidia.com/curanddx-downloads">cuRANDDx</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://developer.nvidia.com/nvcompdx-downloads">nvCOMPDx</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Examples</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="examples">
+<span id="id1"></span><h1>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h1>
+<p>All example source code lives under <code class="docutils literal notranslate"><span class="pre">example/nppdx/</span></code> in the NPPDx repository. Examples are
+grouped by topic in numbered directories, plus a <code class="docutils literal notranslate"><span class="pre">clang_ptx/</span></code> directory for the Clang
+device-only PTX build. Each sample is a complete CUDA program that builds with the example
+CMake project. New users should start with 00_introduction/introduction_example.cu
+together with <a class="reference internal" href="../get_started/introduction.html#intro"><span class="std std-ref">Image Processing Using NPPDx</span></a>.</p>
+<section id="building-and-running-examples">
+<h2>Building and running examples<a class="headerlink" href="#building-and-running-examples" title="Link to this heading">#</a></h2>
+<p>See <a class="reference internal" href="../get_started/installation.html#installation"><span class="std std-ref">Installation Guide</span></a> for the full set of CMake options (including the Clang PTX build). From
+the repository root:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cmake<span class="w"> </span>-S<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">NPPDX_ROOT</span><span class="si">}</span><span class="s2">/example/nppdx&quot;</span><span class="w"> </span>-B<span class="w"> </span>build-nppdx-examples<span class="w"> </span><span class="se">\</span>
+<span class="w">      </span>-DNPPDX_BUILD_CUDA_EXAMPLES<span class="o">=</span>ON<span class="w"> </span><span class="se">\</span>
+<span class="w">      </span>-DNPPDX_CUDA_ARCHITECTURES<span class="o">=</span><span class="m">80</span>-real
+
+cmake<span class="w"> </span>--build<span class="w"> </span>build-nppdx-examples<span class="w"> </span>--target<span class="w"> </span>nppdx_examples
+ctest<span class="w"> </span>--test-dir<span class="w"> </span>build-nppdx-examples<span class="w"> </span>--output-on-failure
+</pre></div>
+</div>
+<p>Each example CMake target is named <code class="docutils literal notranslate"><span class="pre">&lt;example-dir&gt;_&lt;example-name&gt;</span></code> (for example
+<code class="docutils literal notranslate"><span class="pre">03_area_operation_box_filter</span></code>), but the built executable keeps just the source file name and is
+written under <code class="docutils literal notranslate"><span class="pre">build-nppdx-examples/&lt;example-dir&gt;/&lt;example-name&gt;</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./build-nppdx-examples/00_introduction/introduction_example
+./build-nppdx-examples/04_resize/fused_resize
+</pre></div>
+</div>
+<p>Run <code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">--build</span> <span class="pre">build-nppdx-examples</span> <span class="pre">--target</span> <span class="pre">help</span></code> to list every generated target.</p>
+<p>Set <code class="docutils literal notranslate"><span class="pre">NPPDX_BUILD_CLANG_PTX_EXAMPLES=ON</span></code> and <code class="docutils literal notranslate"><span class="pre">NPPDX_BUILD_CUDA_EXAMPLES=OFF</span></code> (with
+<code class="docutils literal notranslate"><span class="pre">CMAKE_CXX_COMPILER=clang++</span></code>) to build the Clang PTX example under <code class="docutils literal notranslate"><span class="pre">clang_ptx/</span></code> instead; see
+<code class="docutils literal notranslate"><span class="pre">clang_ptx/</span></code> below and Clang device compilation in <a class="reference internal" href="../get_started/installation.html#installation"><span class="std std-ref">Installation Guide</span></a>.</p>
+<p>Some examples are conditional:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">box_filter</span></code>, <code class="docutils literal notranslate"><span class="pre">box_filter_fused_conversion</span></code>, <code class="docutils literal notranslate"><span class="pre">gaussian_blur_fused_conversion</span></code>,
+<code class="docutils literal notranslate"><span class="pre">sharpen_fused_conversion</span></code>, and <code class="docutils literal notranslate"><span class="pre">median_fused_conversion</span></code> optionally compare output and
+performance against NPP when the CUDA NPP SDK is available at configure time.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">clang_ptx/fused_resize</span></code> requires <code class="docutils literal notranslate"><span class="pre">NPPDX_BUILD_CLANG_PTX_EXAMPLES=ON</span></code> and Clang 21 or newer as
+<code class="docutils literal notranslate"><span class="pre">CMAKE_CXX_COMPILER</span></code>; it is not part of the default CUDA example build.</p></li>
+</ul>
+<div class="pst-scrollable-table-container"><table class="table" id="id2">
+<caption><span class="caption-number">Table 1 </span><span class="caption-text">Example overview</span><a class="headerlink" href="#id2" title="Link to this table">#</a></caption>
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 30.0%" />
+<col style="width: 50.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Group</p></th>
+<th class="head"><p>Example</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Introduction</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">introduction_example</span></code></p></td>
+<td><p>Register-only API. Minimal ingest/exgest round-trip: packed RGB24 into float registers,
+then back out to RGB24. Start here.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Introduction</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">introduction_example_shared_memory</span></code></p></td>
+<td><p>Shared-memory API. Same RGB24-to-RGB24 flow using <code class="docutils literal notranslate"><span class="pre">shared_memory::TileStorage</span></code> and
+storage traits instead of registers.</p></td>
+</tr>
+<tr class="row-even"><td><p>Introduction</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">texture_example</span></code></p></td>
+<td><p>Texture buffer (CUDA array) hardware accelerated ingest/exgest. Texture ingest paired with pointer exgest, and
+pointer ingest paired with surface exgest, both for RGB24.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Color Conversion</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">image_conversion_example</span></code></p></td>
+<td><p>Register-only API. RGB24-to-YUV420p and YUV420p-to-RGB24 round-trip through
+<a class="reference internal" href="../api/processing_steps_pointwise.html#color-convert-step"><span class="std std-ref">color_convert</span></a>, with sample pixels and error stats.</p></td>
+</tr>
+<tr class="row-even"><td><p>Color Conversion</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">limited_range_example</span></code></p></td>
+<td><p>Register-only API. Full-range/limited-range affine remapping
+(<a class="reference internal" href="../api/processing_steps_pointwise.html#affine-channel-map-step"><span class="std std-ref">affine_channel_map</span></a>) for RGB and YUV BT.709 4:4:4, at 8-bit and
+10-bit depth.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Fused Pointwise</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">rgb_gamma_example</span></code></p></td>
+<td><p>Register-only API. Ingest RGB24, apply forward and/or inverse
+<a class="reference internal" href="../api/processing_steps_pointwise.html#gamma-step"><span class="std std-ref">gamma</span></a> (SDR, HLG, PQ), exgest RGB24, with round-trip verification.</p></td>
+</tr>
+<tr class="row-even"><td><p>Area process</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">box_filter</span></code></p></td>
+<td><p>Shared-memory API with a halo. Box blur only: ingest RGB24 with halo, blur, exgest RGB24.
+See <a class="reference internal" href="../api/processing_steps_area.html#box-blur-operator"><span class="std std-ref">Box blur</span></a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Area process</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">box_filter_fused_conversion</span></code></p></td>
+<td><p>Shared-memory API with a halo. <a class="reference internal" href="../api/processing_steps_area.html#box-blur-operator"><span class="std std-ref">Box blur</span></a> fused with an in-place
+RGB-to-YUV BT.601 <a class="reference internal" href="../api/processing_steps_pointwise.html#color-convert-step"><span class="std std-ref">color_convert</span></a>, exgest YUV422p.</p></td>
+</tr>
+<tr class="row-even"><td><p>Area process</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gaussian_blur_fused_conversion</span></code></p></td>
+<td><p>Same fused area-plus-pointwise pattern as above, using
+<a class="reference internal" href="../api/processing_steps_area.html#gaussian-blur-operator"><span class="std std-ref">Gaussian blur</span></a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Area process</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">median_fused_conversion</span></code></p></td>
+<td><p>Same fused area-plus-pointwise pattern as above, using a
+<a class="reference internal" href="../api/processing_steps_area.html#median-operator"><span class="std std-ref">median</span></a> filter.</p></td>
+</tr>
+<tr class="row-even"><td><p>Area process</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sharpen_fused_conversion</span></code></p></td>
+<td><p>Same fused area-plus-pointwise pattern as above, using a 3x3 additive (Rosenfeld
+Laplacian-style) <a class="reference internal" href="../api/processing_steps_area.html#sharpen-operator"><span class="std std-ref">sharpen</span></a> kernel.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Resize</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">resize_example</span></code></p></td>
+<td><p>Shared-memory API with a resize-dependent halo. <a class="reference internal" href="../api/processing_steps_area.html#resize-operator"><span class="std std-ref">Resize</span></a> only;
+output geometry different from input; validated against a CPU reference.</p></td>
+</tr>
+<tr class="row-even"><td><p>Resize</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">fused_resize</span></code></p></td>
+<td><p>Shared-memory API. <a class="reference internal" href="../api/processing_steps_area.html#box-blur-operator"><span class="std std-ref">Box blur</span></a>, <a class="reference internal" href="../api/processing_steps_area.html#resize-operator"><span class="std std-ref">resize</span></a>, and
+an in-place RGB-to-YUV BT.601 <a class="reference internal" href="../api/processing_steps_pointwise.html#color-convert-step"><span class="std std-ref">color_convert</span></a> fused in one kernel.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Clang PTX</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">clang_ptx/fused_resize</span></code></p></td>
+<td><p>Device-only PTX build of the fused blur-resize-convert kernel, launched from a C++ host
+program through the CUDA Driver API.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="introduction">
+<h2><code class="docutils literal notranslate"><span class="pre">00_introduction/</span></code><a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<p>Basic ingest/exgest; Register-only API versus Shared-memory API; hardware accelerated texture/surface I/O.</p>
+<ul class="simple">
+<li><p><strong>introduction_example.cu</strong>: Register-only API. Smallest complete NPPDx program and the best
+place to start (see <a class="reference internal" href="../get_started/introduction.html#intro"><span class="std std-ref">Image Processing Using NPPDx</span></a>). Ingest packed RGB24 into float registers, then exgest
+straight back to RGB24 – same packing format in and out. Shows how ingest and exgest are
+specified, how compile-time launch traits are queried, and how the kernel is launched.</p></li>
+<li><p><strong>introduction_example_shared_memory.cu</strong>: Shared-memory API. Same RGB24-to-RGB24 round trip
+through shared memory instead of registers. Builds a <code class="docutils literal notranslate"><span class="pre">shared_memory::TileStorage</span></code> for the
+tile and uses storage traits (<code class="docutils literal notranslate"><span class="pre">input_storage_of_t</span></code>, <code class="docutils literal notranslate"><span class="pre">compute_total_tile_storage</span></code>) to size
+it – the pattern every shared-memory example after this one builds on.</p></li>
+<li><p><strong>texture_example.cu</strong>: hardware accelerated texture ingest and exgest for CUDA arrays instead of pitch-linear pointers. Two
+passes: texture ingest (<code class="docutils literal notranslate"><span class="pre">tex2D</span></code>) with pitch-linear pointer exgest, then pointer ingest with
+surface exgest (<code class="docutils literal notranslate"><span class="pre">surf2Dwrite</span></code>). Pattern for consuming or producing texture/surface buffers from
+graphics APIs and NVENC/NVDEC without an extra copy to pitch-linear memory.</p></li>
+</ul>
+</section>
+<section id="color-conversion">
+<h2><code class="docutils literal notranslate"><span class="pre">01_color_conversion/</span></code><a class="headerlink" href="#color-conversion" title="Link to this heading">#</a></h2>
+<p>Color and packing-format conversion using the Register-only API.</p>
+<ul class="simple">
+<li><p><strong>image_conversion_example.cu</strong>: Register-only API. One kernel per direction: ingest packed RGB24
+or YUV420p, <code class="docutils literal notranslate"><span class="pre">color_convert</span></code> on the float tile, exgest to the other packing. The sample runs
+RGB to YUV, then YUV to RGB round-trip, prints sample pixels, and reports error stats. Clipping
+to the representable range of the output packed format happens at exgest (standard NPPDx
+behavior).</p></li>
+<li><p><strong>limited_range_example.cu</strong>: Register-only API. Applies <code class="docutils literal notranslate"><span class="pre">affine_channel_map</span></code> with
+<code class="docutils literal notranslate"><span class="pre">ToLimitedLuma</span></code> / <code class="docutils literal notranslate"><span class="pre">FromLimitedLuma</span></code> (and the matching chroma variants) to move samples
+between full range and limited (studio) range, for both RGB and YUV BT.709 4:4:4, at 8-bit
+and 10-bit depth. Verifies that every output sample lands inside the target range.</p></li>
+</ul>
+</section>
+<section id="fused-pointwise">
+<h2><code class="docutils literal notranslate"><span class="pre">02_fused_pointwise/</span></code><a class="headerlink" href="#fused-pointwise" title="Link to this heading">#</a></h2>
+<p>Fused kernels with pointwise steps between ingest and exgest.</p>
+<ul class="simple">
+<li><p><strong>rgb_gamma_example.cu</strong>: Register-only API. Ingest RGB24, apply <code class="docutils literal notranslate"><span class="pre">gamma</span></code> forward and/or
+inverse (SDR, HLG, and PQ transfer functions) in place on the register tile, then exgest
+RGB24. Forward-plus-inverse pairs verify round-trip correctness; forward-only cases write
+result images for inspection. Smallest example of an in-place <code class="docutils literal notranslate"><span class="pre">Function&lt;function::gamma&gt;</span></code> on
+a register tile.</p></li>
+</ul>
+</section>
+<section id="area-operation">
+<h2><code class="docutils literal notranslate"><span class="pre">03_area_operation/</span></code><a class="headerlink" href="#area-operation" title="Link to this heading">#</a></h2>
+<p>Neighborhood (area) steps and fused kernels that combine an area process with pointwise
+color conversion. These examples use the Shared-memory API, halos
+(<code class="docutils literal notranslate"><span class="pre">MemoryHalo</span></code> / <code class="docutils literal notranslate"><span class="pre">CumulativeHalo</span></code>, see <a class="reference internal" href="../api/operators.html#halo-operators"><span class="std std-ref">Halo operators</span></a>), and dual <code class="docutils literal notranslate"><span class="pre">TileStorage</span></code>
+buffers so intermediate results stay on-chip without round-trips to global memory.</p>
+<ul class="simple">
+<li><p><strong>box_filter.cu</strong>: Area-process baseline. Ingest RGB24 with a halo into a shared-memory
+tile, apply a box blur, and exgest RGB24 – no other step between ingest and exgest. Shows
+the Shared-memory API with one intermediate neighborhood step.</p></li>
+<li><p><strong>box_filter_fused_conversion.cu</strong>: Fuses that same box blur with an in-place RGB-to-YUV
+BT.601 <code class="docutils literal notranslate"><span class="pre">color_convert</span></code> before exgesting YUV422p. Canonical area-plus-pointwise fused
+kernel on the Shared-memory API, and the template the remaining three examples in this
+directory follow.</p></li>
+<li><p><strong>gaussian_blur_fused_conversion.cu</strong>: Same fused-kernel structure as
+<code class="docutils literal notranslate"><span class="pre">box_filter_fused_conversion</span></code>, with Gaussian blur in place of box blur.</p></li>
+<li><p><strong>median_fused_conversion.cu</strong>: Same structure with a median filter.</p></li>
+<li><p><strong>sharpen_fused_conversion.cu</strong>: Same structure with a 3x3 additive Rosenfeld
+Laplacian-style sharpen.</p></li>
+</ul>
+<p>These are good examples of working with halos and <code class="docutils literal notranslate"><span class="pre">TileStorage</span></code> buffers when a fused
+kernel includes a single neighborhood step.</p>
+</section>
+<section id="resize">
+<h2><code class="docutils literal notranslate"><span class="pre">04_resize/</span></code><a class="headerlink" href="#resize" title="Link to this heading">#</a></h2>
+<p>Resize with shared-memory tiles, halos, and output geometry different from input.</p>
+<ul class="simple">
+<li><p><strong>resize_example.cu</strong>: Resize only. Ingest RGB24 with a resize-dependent halo, perform the
+resize, and exgest RGB24 at the output width and height. Uses separate input, intermediate,
+and output <code class="docutils literal notranslate"><span class="pre">TileStorage</span></code> buffers (<code class="docutils literal notranslate"><span class="pre">slice_into_tile_storage</span></code>) so those buffers stay
+distinct. This example is a 2:1 downscale (312x376 to 156x188) with bilinear interpolation,
+validated against a CPU reference. Because <code class="docutils literal notranslate"><span class="pre">resize</span></code> changes output tile geometry, query the
+resize-related traits (for example <code class="docutils literal notranslate"><span class="pre">nppdx::output_storage_of_t&lt;Resize&gt;</span></code>) and set grid
+dimensions from the output size, not the input.</p></li>
+<li><p><strong>fused_resize.cu</strong>: Fused kernel with resize. Ingest RGB24, box blur, a 2x upscale resize,
+and an in-place RGB-to-YUV BT.601 <code class="docutils literal notranslate"><span class="pre">color_convert</span></code>, then exgest YUV422p (312x376 to 624x752
+in the default configuration). Shows resize composed with area and pointwise steps the same
+way <code class="docutils literal notranslate"><span class="pre">03_area_operation/</span></code> fuses blur and color conversion.</p></li>
+</ul>
+</section>
+<section id="clang-ptx">
+<h2><code class="docutils literal notranslate"><span class="pre">clang_ptx/</span></code><a class="headerlink" href="#clang-ptx" title="Link to this heading">#</a></h2>
+<p>Device-only PTX built with Clang (not <code class="docutils literal notranslate"><span class="pre">nvcc</span></code>), loaded from a host C++ driver via the CUDA
+Driver API.</p>
+<ul class="simple">
+<li><p><strong>fused_resize</strong> (<code class="docutils literal notranslate"><span class="pre">fused_resize_device.cu</span></code> + <code class="docutils literal notranslate"><span class="pre">fused_resize.cpp</span></code>): Same fused
+blur <span class="math notranslate nohighlight">\(\rightarrow\)</span> resize <span class="math notranslate nohighlight">\(\rightarrow\)</span> convert kernel as <code class="docutils literal notranslate"><span class="pre">04_resize/fused_resize.cu</span></code>, compiled to PTX with Clang
+and launched from the host executable. Shows that NPPDx device code runs outside <code class="docutils literal notranslate"><span class="pre">nvcc</span></code>.</p></li>
+</ul>
+<p>Requires <code class="docutils literal notranslate"><span class="pre">NPPDX_BUILD_CLANG_PTX_EXAMPLES=ON</span></code>, Clang 21+ as <code class="docutils literal notranslate"><span class="pre">CMAKE_CXX_COMPILER</span></code>, and
+<code class="docutils literal notranslate"><span class="pre">NPPDX_CLANG_PTX_COMPAT_INCLUDE_DIR</span></code>. Full configure steps are under Clang device
+compilation in <a class="reference internal" href="../get_started/installation.html#installation"><span class="std std-ref">Installation Guide</span></a>.</p>
+<p>Per-example walkthrough pages may be added later. Until then, use the sources above together with
+<a class="reference internal" href="../get_started/introduction.html#intro"><span class="std std-ref">Image Processing Using NPPDx</span></a>, <a class="reference internal" href="../api/traits.html#traits-label"><span class="std std-ref">Traits</span></a>, <a class="reference internal" href="../api/operators.html#operators-label"><span class="std std-ref">Operators</span></a>, and <a class="reference internal" href="../api/processing_steps.html#processing-steps-label"><span class="std std-ref">Processing overview</span></a>.</p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../api/methods.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Execution Methods (Device API)</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../license.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">License</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+
+
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-and-running-examples">Building and running examples</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction"><code class="docutils literal notranslate"><span class="pre">00_introduction/</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#color-conversion"><code class="docutils literal notranslate"><span class="pre">01_color_conversion/</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fused-pointwise"><code class="docutils literal notranslate"><span class="pre">02_fused_pointwise/</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#area-operation"><code class="docutils literal notranslate"><span class="pre">03_area_operation/</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resize"><code class="docutils literal notranslate"><span class="pre">04_resize/</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clang-ptx"><code class="docutils literal notranslate"><span class="pre">clang_ptx/</span></code></a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+<a class="footer-brand logo" href="https://www.nvidia.com">
+  <img src="../_static/nvidia-logo-horiz-rgb-1c-blk-for-screen.svg" class="logo__image only-light" alt="NVIDIA"/>
+  <img src="../_static/nvidia-logo-horiz-rgb-1c-wht-for-screen.svg" class="logo__image only-dark" alt="NVIDIA"/>
+</a></div>
+      
+        <div class="footer-item">
+
+<div class="footer-links">
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/about-nvidia/privacy-policy/">Privacy Policy</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/about-nvidia/privacy-center/">Your Privacy Choices</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/about-nvidia/terms-of-service/">Terms of Service</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/about-nvidia/accessibility/">Accessibility</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/about-nvidia/company-policies/">Corporate Policies</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/product-security/">Product Security</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/contact/">Contact</a>
+  
+  
+  
+</div>
+</div>
+      
+        <div class="footer-item">
+
+
+
+
+  <p class="copyright">
+    
+      Copyright © 2025-2026, NVIDIA Corporation &amp; Affiliates. All rights reserved.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+  </body>
+</html>

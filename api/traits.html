@@ -1,0 +1,1116 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Traits &#8212; NPPDx</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/nvidia-sphinx-theme.css?v=933278ad" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+
+
+
+    <script src="../_static/documentation_options.js?v=2caa9db7"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/traits';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.20.0';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://nvidia.github.io/NPPDx/_static/switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '0.1.0';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner =
+            false;
+        </script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+
+    <link rel="icon" href="../_static/nvidia.ico"/>
+
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Execution Methods (Device API)" href="methods.html" />
+    <link rel="prev" title="Area processing steps" href="processing_steps_area.html" />
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.1.0" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+
+
+  </head>
+
+  <body data-default-mode="">
+
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/nvidia-logo-horiz-rgb-blk-for-screen.svg" class="logo__image only-light" alt="NPPDx - Home"/>
+    <img src="../_static/nvidia-logo-horiz-rgb-wht-for-screen.svg" class="logo__image only-dark pst-js-only" alt="NPPDx - Home"/>
+  
+  
+    <p class="title logo__title">NPPDx</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+
+
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/nvidia-logo-horiz-rgb-blk-for-screen.svg" class="logo__image only-light" alt="NPPDx - Home"/>
+    <img src="../_static/nvidia-logo-horiz-rgb-wht-for-screen.svg" class="logo__image only-dark pst-js-only" alt="NPPDx - Home"/>
+  
+  
+    <p class="title logo__title">NPPDx</p>
+  
+</a>
+
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+
+
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Table of Contents">
+  <p class="bd-links__title" role="heading" aria-level="1">Table of Contents</p>
+  <div class="bd-toc-item navbar-nav"><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Home</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../get_started/requirement.html">Requirements and Functionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/introduction.html">Using NPPDx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/performance.html">Achieving High Performance</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="operators.html">Operators</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="processing_steps.html">Processing overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="processing_steps_io.html">I/O steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="processing_steps_pointwise.html">Pointwise processing steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="processing_steps_area.html">Area processing steps</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Traits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="methods.html">Execution Methods</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples List</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://github.com/NVIDIA/NPPDx">GitHub Repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">MathDx</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://developer.nvidia.com/cublasdx-downloads">cuBLASDx</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://developer.nvidia.com/cufftdx-downloads">cuFFTDx</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://developer.nvidia.com/cusolverdx-downloads">cuSolverDx</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://developer.nvidia.com/curanddx-downloads">cuRANDDx</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://developer.nvidia.com/nvcompdx-downloads">nvCOMPDx</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Traits</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="traits">
+<span id="traits-label"></span><h1>Traits<a class="headerlink" href="#traits" title="Link to this heading">#</a></h1>
+<p>NPPDx fused kernels are built by composing operators at compile time. Each step is a
+composed operator expression such as <code class="docutils literal notranslate"><span class="pre">IngestOperation</span></code>. Traits are constexpr accessors that
+inform the compiler how to build the code – format, tile size, halo, and launch geometry – from
+those composed types. The library uses the same information internally to pick backend
+implementations, cell layouts, and shared-memory footprints when generating specialized device
+code. Terminology (operator, compose, steps, fused kernel) is defined in <a class="reference internal" href="../get_started/introduction.html#terminology"><span class="std std-ref">Terminology</span></a>.</p>
+<p>Most traits are evaluated entirely at compile time. Invalid or incomplete steps fail
+with <code class="docutils literal notranslate"><span class="pre">static_assert</span></code> during instantiation rather than at runtime.</p>
+<section id="architecture-halos-at-compile-time">
+<h2>Architecture – halos at compile time<a class="headerlink" href="#architecture-halos-at-compile-time" title="Link to this heading">#</a></h2>
+<p>NPPDx is a Dx-style library for image processing: operators compose at compile time, and the
+library counts halos while compiling so ingest loads the right border, neighborhood steps know
+their valid tile bounds, and fused kernels stay consistent without runtime halo bookkeeping.</p>
+<p>New functionality extends the same model:</p>
+<ul class="simple">
+<li><p><strong>Ingest/exgest formats</strong>: add a <code class="docutils literal notranslate"><span class="pre">packing_format</span></code> and specialize the format backend
+(<code class="docutils literal notranslate"><span class="pre">packing_format_traits</span></code> and I/O implementations).</p></li>
+<li><p><strong>Operators</strong>: add a <code class="docutils literal notranslate"><span class="pre">function</span></code> tag, parameter operators, and an
+<code class="docutils literal notranslate"><span class="pre">operation_operator_traits</span></code> specialization.</p></li>
+<li><p><strong>Backend algorithms</strong>: plug implementations into the operator database
+(<code class="docutils literal notranslate"><span class="pre">operation_database.hpp</span></code>) without changing user kernel structure.</p></li>
+</ul>
+</section>
+<section id="architecture-overview">
+<h2>Architecture overview<a class="headerlink" href="#architecture-overview" title="Link to this heading">#</a></h2>
+<p>The diagram below shows how user code connects to traits, operator selection, and device
+execution. The left panel is the library-level view; the right panel zooms into
+Operator implementation (the dashed region on the left).</p>
+<figure class="align-center" id="id1">
+<span id="fig-traits-architecture"></span><a class="reference internal image-reference" href="../_images/nppdx-traits-architecture.png"><img alt="NPPDx traits and operator implementation architecture" src="../_images/nppdx-traits-architecture.png" style="width: 100%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Figure 4 </span><span class="caption-text">NPPDx architecture: traits database, operator implementation, and execute.</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<section id="left-panel-from-user-code-to-operator-implementation">
+<h3>Left panel – from user code to operator implementation<a class="headerlink" href="#left-panel-from-user-code-to-operator-implementation" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>User code</strong>: composes processing steps with <a class="reference internal" href="operators.html#operators-label"><span class="std std-ref">operators</span></a>, launches
+CUDA kernels, and passes image width and height at runtime.</p></li>
+<li><p><strong>NPPDx execution</strong>: the compile-time type formed when a processing step is complete (<code class="docutils literal notranslate"><span class="pre">SM</span></code>,
+<code class="docutils literal notranslate"><span class="pre">Block()</span></code>, and a <code class="docutils literal notranslate"><span class="pre">Function</span></code> or <code class="docutils literal notranslate"><span class="pre">InputOutput</span></code> with format) – for example
+<code class="docutils literal notranslate"><span class="pre">IngestOperation</span></code>.</p></li>
+<li><p><strong>Runtime API</strong>: the <code class="docutils literal notranslate"><span class="pre">execute()</span></code> overloads on that type, called from device code inside the
+kernel.</p></li>
+<li><p><strong>Compile-time traits and implementation query</strong>: constexpr accessors such as
+<code class="docutils literal notranslate"><span class="pre">tile_size_of_v</span></code>, <code class="docutils literal notranslate"><span class="pre">local_halo_of_v</span></code>, and <code class="docutils literal notranslate"><span class="pre">is_supported_v</span></code> that read the composed
+expression before launch.</p></li>
+<li><p><strong>Compile-time / runtime traits database</strong>: per-operator and per-format trait
+specializations (<code class="docutils literal notranslate"><span class="pre">operation_operator_traits</span></code>, <code class="docutils literal notranslate"><span class="pre">packing_format_traits</span></code>) plus the operator
+database (<code class="docutils literal notranslate"><span class="pre">operation_database.hpp</span></code>) that maps a trait query to a concrete backend
+implementation.</p></li>
+<li><p><strong>Operator implementation</strong>: the selected ingest/exgest or function backend for the
+configured processing step (expanded on the right).</p></li>
+<li><p><strong>Ingest/exgest</strong> and Functions: the two families of operators the database chooses
+from.</p></li>
+</ul>
+</section>
+<section id="right-panel-inside-operator-implementation">
+<h3>Right panel – inside operator implementation<a class="headerlink" href="#right-panel-inside-operator-implementation" title="Link to this heading">#</a></h3>
+<p>The zoomed view shows what happens for a single operator once the composed expression (<code class="docutils literal notranslate"><span class="pre">...</span></code>)
+and runtime image size are known:</p>
+<ul class="simple">
+<li><p><strong>Composed operators</strong> (<code class="docutils literal notranslate"><span class="pre">...</span></code>): the <code class="docutils literal notranslate"><span class="pre">+</span></code>-assembled operators (<code class="docutils literal notranslate"><span class="pre">TileSize</span></code>, <code class="docutils literal notranslate"><span class="pre">Function</span></code>,
+<code class="docutils literal notranslate"><span class="pre">BoxBlur</span></code>, formats, and so on). These feed traits and tile layout at compile time.</p></li>
+<li><p><strong>Input/Output data width/height</strong>: runtime image dimensions passed into <code class="docutils literal notranslate"><span class="pre">execute()</span></code>;
+used with tile size to determine how many tiles cover the image.</p></li>
+<li><p><strong>Traits</strong>: compile-time values extracted from the processing step (format, halo, SM, block
+geometry, parameter operators).</p></li>
+<li><p><strong>Tile layout</strong>: nominal tile size plus memory and cumulative halos; defines the extended
+region each block must load or process.</p></li>
+<li><p><strong>Region</strong>: the valid tile interior and halo bounds derived from layout (see
+<code class="docutils literal notranslate"><span class="pre">detail/database/region.hpp</span></code>).</p></li>
+<li><p><strong>Grid</strong>: launch grid dimensions from tile layout and image width/height
+(<code class="docutils literal notranslate"><span class="pre">calculate_grid_dim</span></code>).</p></li>
+<li><p><strong>Executor</strong>: the normalized execution operator and backend <code class="docutils literal notranslate"><span class="pre">impl</span></code> type chosen from the
+traits database (cell configuration, block threads, specialized device code).</p></li>
+<li><p><strong>execute</strong>: the device entry point that combines the executor, compile-time traits, runtime
+width/height, and buffers. The arrow from the left panel is the call from user kernel code into
+the library <code class="docutils literal notranslate"><span class="pre">execute()</span></code> method.</p></li>
+</ul>
+<p>In short: operators and tile layout determine traits at compile time; traits and image size
+determine region, grid, and executor; <code class="docutils literal notranslate"><span class="pre">execute</span></code> runs the constructed fused kernel.</p>
+</section>
+</section>
+<section id="how-traits-connect-operators-to-device-code">
+<h2>How traits connect operators to device code<a class="headerlink" href="#how-traits-connect-operators-to-device-code" title="Link to this heading">#</a></h2>
+<p>The list below maps the right-hand panel to headers in the repository:</p>
+<ul class="simple">
+<li><p><strong>Operators</strong>: user-facing knobs (<code class="docutils literal notranslate"><span class="pre">TileSize</span></code>, <code class="docutils literal notranslate"><span class="pre">BoxBlur&lt;3,</span> <span class="pre">3&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">InputFormat</span></code>, …).</p></li>
+<li><p><strong>Trait queries</strong>: extract configured values from the composed type (<code class="docutils literal notranslate"><span class="pre">tile_size_of_v</span></code>,
+<code class="docutils literal notranslate"><span class="pre">local_halo_of_v</span></code>, …) in <code class="docutils literal notranslate"><span class="pre">traits/nppdx_traits.hpp</span></code>.</p></li>
+<li><p><strong>Operator traits</strong>: per-operator metadata in <code class="docutils literal notranslate"><span class="pre">operation_operator_traits</span></code> used to
+derive halos, shared-memory storage slots, and parameter-operator wiring to backends.</p></li>
+<li><p><strong>Launch traits</strong>: a complete processing step (for example <code class="docutils literal notranslate"><span class="pre">IngestOperation</span></code>) exposes
+<code class="docutils literal notranslate"><span class="pre">block_dim</span></code>, <code class="docutils literal notranslate"><span class="pre">calculate_grid_dim</span></code>, <code class="docutils literal notranslate"><span class="pre">elements_per_thread</span></code>, and an <code class="docutils literal notranslate"><span class="pre">execute()</span></code>
+implementation selected from the operator database.</p></li>
+</ul>
+<p>The operator database (<code class="docutils literal notranslate"><span class="pre">operation_database.hpp</span></code>) uses SM architecture, packing format, tile
+geometry, and halo requirements to choose a cell configuration (how threads map pixels
+inside a tile) and block size. That selection is not a separate user API; it is driven by the
+traits computed from the processing step.</p>
+</section>
+<section id="query-traits">
+<h2>Query traits<a class="headerlink" href="#query-traits" title="Link to this heading">#</a></h2>
+<section id="trait-naming">
+<h3>Trait naming<a class="headerlink" href="#trait-naming" title="Link to this heading">#</a></h3>
+<p>NPPDx follows the usual C++ trait suffix convention (as in <code class="docutils literal notranslate"><span class="pre">std::is_same_v</span></code> /
+<code class="docutils literal notranslate"><span class="pre">std::is_same_t</span></code>):</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">foo_of&lt;Description&gt;</span></code> – the trait struct.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">foo_of_v&lt;Description&gt;</span></code> – the trait’s compile-time value (<code class="docutils literal notranslate"><span class="pre">foo_of&lt;Description&gt;::value</span></code>).
+Use for scalars, enums, and value types such as <code class="docutils literal notranslate"><span class="pre">Halo4</span></code>, <code class="docutils literal notranslate"><span class="pre">uint2</span></code>, and <code class="docutils literal notranslate"><span class="pre">dim3</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">foo_of_t&lt;Description&gt;</span></code> – the trait’s type (<code class="docutils literal notranslate"><span class="pre">typename</span> <span class="pre">foo_of&lt;Description&gt;::type</span></code>).
+Use when declaring variables, template parameters, or storage typedefs.</p></li>
+</ul>
+<p>Header <code class="docutils literal notranslate"><span class="pre">traits/nppdx_traits.hpp</span></code> (included from <code class="docutils literal notranslate"><span class="pre">nppdx/traits.hpp</span></code>) provides constexpr
+queries on any composed operator expression. Common accessors:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 38.0%" />
+<col style="width: 62.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Trait</p></th>
+<th class="head"><p>Meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">type_of_v&lt;Description&gt;</span></code></p></td>
+<td><p>commonDx data-type enum from the <code class="docutils literal notranslate"><span class="pre">Type&lt;...&gt;</span></code> operator (or its library default).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">processing_type_of_t&lt;Description&gt;</span></code></p></td>
+<td><p>C++ type used for on-tile processing; currently <code class="docutils literal notranslate"><span class="pre">float</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sm_of_v&lt;Description&gt;</span></code></p></td>
+<td><p>Target SM architecture from <code class="docutils literal notranslate"><span class="pre">SM&lt;...&gt;</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">block_dim_of_v&lt;Description&gt;</span></code></p></td>
+<td><p>Thread-block dimensions from <code class="docutils literal notranslate"><span class="pre">BlockDim&lt;...&gt;</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">tile_size_of_v&lt;Description&gt;</span></code></p></td>
+<td><p>Nominal tile size as <code class="docutils literal notranslate"><span class="pre">uint2</span></code> from <code class="docutils literal notranslate"><span class="pre">TileSize&lt;W,</span> <span class="pre">H&gt;</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">packing_format_of_v&lt;Description&gt;</span></code></p></td>
+<td><p>Packed I/O format (ingest uses <code class="docutils literal notranslate"><span class="pre">input_format_of_v</span></code>, exgest uses <code class="docutils literal notranslate"><span class="pre">output_format_of_v</span></code>).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">input_output_direction_of_v&lt;Description&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ingest</span></code> or <code class="docutils literal notranslate"><span class="pre">exgest</span></code> from <code class="docutils literal notranslate"><span class="pre">InputOutput&lt;...&gt;</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">function_of_v&lt;Description&gt;</span></code></p></td>
+<td><p>Image-processing function tag from <code class="docutils literal notranslate"><span class="pre">Function&lt;function::</span> <span class="pre">...&gt;</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">operation_operator_of_t&lt;Description&gt;</span></code></p></td>
+<td><p>The parameter operator paired with the function or I/O tag (for example <code class="docutils literal notranslate"><span class="pre">BoxBlur&lt;3,</span> <span class="pre">3&gt;</span></code>).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">local_halo_of_v&lt;Description&gt;</span></code></p></td>
+<td><p>Per-operator neighborhood support (see <a class="reference internal" href="#traits-halos"><span class="std std-ref">Halos and step order</span></a>).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">memory_halo_of_v&lt;Description&gt;</span></code> / <code class="docutils literal notranslate"><span class="pre">cumulative_halo_of_v&lt;Description&gt;</span></code></p></td>
+<td><p>Values from <code class="docutils literal notranslate"><span class="pre">MemoryHalo</span></code> / <code class="docutils literal notranslate"><span class="pre">CumulativeHalo</span></code> on the step when set; otherwise the empty
+halo defaults. See <a class="reference internal" href="#traits-halos"><span class="std std-ref">Halos and step order</span></a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">elements_per_thread_of_v&lt;Description&gt;</span></code></p></td>
+<td><p>Register footprint per thread (derived from cell configuration; see internal cells
+below).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">inputs_of_t&lt;Description&gt;</span></code> / <code class="docutils literal notranslate"><span class="pre">outputs_of_t&lt;Description&gt;</span></code> / <code class="docutils literal notranslate"><span class="pre">temp_of_t&lt;Description&gt;</span></code></p></td>
+<td><p>Tuple typedefs (<code class="docutils literal notranslate"><span class="pre">Description::inputs</span></code>, <code class="docutils literal notranslate"><span class="pre">::outputs</span></code>, <code class="docutils literal notranslate"><span class="pre">::temp</span></code>).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">input_storage_of_t&lt;Description&gt;</span></code> / <code class="docutils literal notranslate"><span class="pre">output_storage_of_t&lt;Description&gt;</span></code> / <code class="docutils literal notranslate"><span class="pre">temp_storage_of_t&lt;Description&gt;</span></code></p></td>
+<td><p>Convenience aliases for element <code class="docutils literal notranslate"><span class="pre">0</span></code> of the corresponding storage tuple.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>These traits are the low-level building blocks. Host code can query them directly; the
+<a class="reference internal" href="../get_started/introduction.html#intro"><span class="std std-ref">Image Processing Using NPPDx</span></a> walkthrough also shows the same values as static members on types such as
+<code class="docutils literal notranslate"><span class="pre">IngestOperation</span></code> (<code class="docutils literal notranslate"><span class="pre">block_dim</span></code>, <code class="docutils literal notranslate"><span class="pre">input_storage</span></code>, and so on).</p>
+</section>
+</section>
+<section id="operator-traits">
+<h2>Operator traits<a class="headerlink" href="#operator-traits" title="Link to this heading">#</a></h2>
+<p>Each concrete operator kind specializes an operator traits class template –
+<code class="docutils literal notranslate"><span class="pre">operation_operator_traits&lt;TagType&gt;</span></code> in <code class="docutils literal notranslate"><span class="pre">operators/operation_operator_traits.hpp</span></code>. That
+template is declared once per operator and currently dictates how subsequent traits for each
+processing step are derived (halo, storage layout, parameter-operator type, database lookup).</p>
+<p>An operator in this model has three layers:</p>
+<ul class="simple">
+<li><p><strong>The operator itself</strong>: the <code class="docutils literal notranslate"><span class="pre">Function&lt;function::</span> <span class="pre">...&gt;</span></code> tag (or ingest/exgest direction tag)
+paired with execution; oversees traits and parameters in the composed processing step.</p></li>
+<li><p><strong>Operator parameters</strong>: expression-level parameter operators (<code class="docutils literal notranslate"><span class="pre">BoxBlur&lt;3,</span> <span class="pre">3&gt;</span></code>,
+<code class="docutils literal notranslate"><span class="pre">GaussianBlur&lt;20&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">Resize&lt;J,</span> <span class="pre">K,</span> <span class="pre">Method&gt;</span></code>, …) that supply compile-time values such as
+kernel size or Gaussian radius.</p></li>
+<li><p><strong>Operator traits</strong>: low-level properties derived from those parameters (local halo, tap
+count, validity), exposed through <code class="docutils literal notranslate"><span class="pre">operation_operator_traits</span></code> and trait queries such as
+<code class="docutils literal notranslate"><span class="pre">local_halo_of_v</span></code>.</p></li>
+</ul>
+<p>Each <code class="docutils literal notranslate"><span class="pre">operation_operator_traits</span></code> specialization provides:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">op_type_val</span></code>: which <code class="docutils literal notranslate"><span class="pre">operator_type</span></code> enumerator corresponds to the parameter operator.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">default_op</span></code>: placeholder parameter operator used when a processing step omits explicit values.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_local_halo(value)</span></code>: neighborhood radius required for the configured parameters.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_storage_config(value,</span> <span class="pre">layout)</span></code>: shared-memory slot sizes for input, output, and
+temp buffers (see <a class="reference internal" href="#traits-storage"><span class="std std-ref">Shared-memory storage traits</span></a>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_output_nominal_tile(value,</span> <span class="pre">input_nominal)</span></code>: nominal tile size after this processing step
+(resize changes geometry; other steps typically return the input nominal unchanged).</p></li>
+</ul>
+<p>For example, <code class="docutils literal notranslate"><span class="pre">operation_operator_traits&lt;function_tag&lt;function::box_blur&gt;&gt;</span></code> maps
+<code class="docutils literal notranslate"><span class="pre">BoxBlur&lt;W,</span> <span class="pre">H&gt;</span></code> to a uniform halo of <code class="docutils literal notranslate"><span class="pre">(W</span> <span class="pre">-</span> <span class="pre">1)</span> <span class="pre">/</span> <span class="pre">2</span></code> and
+<code class="docutils literal notranslate"><span class="pre">(H</span> <span class="pre">-</span> <span class="pre">1)</span> <span class="pre">/</span> <span class="pre">2</span></code>. <code class="docutils literal notranslate"><span class="pre">operation_operator_traits&lt;function_tag&lt;function::gaussian_blur&gt;&gt;</span></code> derives
+halo from the discrete FIR tap count for <code class="docutils literal notranslate"><span class="pre">GaussianBlur&lt;RadiusTenths,</span> <span class="pre">TailWidth&gt;</span></code>. Pointwise
+steps such as <code class="docutils literal notranslate"><span class="pre">color_convert</span></code> and <code class="docutils literal notranslate"><span class="pre">gamma</span></code> report an empty local halo.</p>
+<p><code class="docutils literal notranslate"><span class="pre">local_halo_of&lt;Description&gt;</span></code> dispatches through these specializations using the function or
+I/O tag and the parameter operator found in the processing step. Adding a new operator requires a
+new <code class="docutils literal notranslate"><span class="pre">function</span></code> tag, parameter operators, a backend implementation, and a matching
+<code class="docutils literal notranslate"><span class="pre">operation_operator_traits</span></code> specialization so halos and database lookup stay consistent.</p>
+</section>
+<section id="packing-format-traits">
+<h2>Packing format traits<a class="headerlink" href="#packing-format-traits" title="Link to this heading">#</a></h2>
+<p>Ingest and exgest backends need format-specific facts: channel count, bits per channel,
+subsampling, planar vs packed layout, and storage type. <code class="docutils literal notranslate"><span class="pre">packing_format_traits&lt;Format&gt;</span></code> in
+<code class="docutils literal notranslate"><span class="pre">operators/formats.hpp</span></code> centralizes those properties. Most enumerators use the general
+template; packed exceptions (for example <code class="docutils literal notranslate"><span class="pre">rgb10</span></code>, <code class="docutils literal notranslate"><span class="pre">y210</span></code>, <code class="docutils literal notranslate"><span class="pre">uyvp</span></code>, <code class="docutils literal notranslate"><span class="pre">v210</span></code>) specialize
+where stride or storage differs from the default.</p>
+<p>Format traits feed tile validity checks (<code class="docutils literal notranslate"><span class="pre">is_valid_tile_v</span></code>) and I/O cell configuration. They
+are rarely queried directly from application code, but they explain why some format and tile-size
+combinations are rejected at compile time.</p>
+</section>
+<section id="launch-and-execution-traits">
+<span id="traits-launch-execution"></span><h2>Launch and execution traits<a class="headerlink" href="#launch-and-execution-traits" title="Link to this heading">#</a></h2>
+<p>When a processing step is complete, the type behind <code class="docutils literal notranslate"><span class="pre">execute()</span></code> (see
+<a class="reference internal" href="methods.html#execution-methods-label"><span class="std std-ref">Execution Methods (Device API)</span></a> – Device API) exposes host-side launch metadata as static
+members:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 34.0%" />
+<col style="width: 66.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Member</p></th>
+<th class="head"><p>Role</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">block_dim</span></code></p></td>
+<td><p>CUDA thread-block size for the kernel launch.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">suggested_tile_size</span></code></p></td>
+<td><p>Nominal tile width and height (matches <code class="docutils literal notranslate"><span class="pre">TileSize</span></code>).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">calculate_grid_dim(width,</span> <span class="pre">height)</span></code></p></td>
+<td><p>Grid dimensions from image size and tile size.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">shared_memory_size</span></code></p></td>
+<td><p>Dynamic shared memory bytes for this processing step’s <code class="docutils literal notranslate"><span class="pre">inputs</span></code>, <code class="docutils literal notranslate"><span class="pre">outputs</span></code>, and <code class="docutils literal notranslate"><span class="pre">temp</span></code>
+layout if the Shared-memory API is used (same value as
+<code class="docutils literal notranslate"><span class="pre">shared_memory::compute_operation_storage&lt;Description&gt;()</span></code>). Composition does not encode
+Register-only vs Shared-memory; Register-only launches pass <code class="docutils literal notranslate"><span class="pre">0</span></code> instead of this value.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">elements_per_thread</span></code></p></td>
+<td><p>Intermediate values per thread on Register-only APIs.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">local_halo</span></code></p></td>
+<td><p>Neighborhood support for this processing step.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">effective_tile_x</span></code> / <code class="docutils literal notranslate"><span class="pre">effective_tile_y</span></code></p></td>
+<td><p>Tile extent including halo for shared-memory allocation.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">input_storage</span></code> / <code class="docutils literal notranslate"><span class="pre">output_storage</span></code> / <code class="docutils literal notranslate"><span class="pre">temp_storage</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">constexpr</span></code> slot shapes (<code class="docutils literal notranslate"><span class="pre">uint2</span></code> size and channel count) from <code class="docutils literal notranslate"><span class="pre">storage_config</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">inputs</span></code> / <code class="docutils literal notranslate"><span class="pre">outputs</span></code> / <code class="docutils literal notranslate"><span class="pre">temp</span></code></p></td>
+<td><p>Tuple typedefs of <code class="docutils literal notranslate"><span class="pre">shared_memory::TileStorage&lt;...&gt;</span></code> (or <code class="docutils literal notranslate"><span class="pre">tuple&lt;&gt;</span></code> when a slot is unused).</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Prefer <code class="docutils literal notranslate"><span class="pre">calculate_grid_dim</span></code> over hand-rolled grid arithmetic. For a kernel that uses one
+processing step’s shared-memory layout, <code class="docutils literal notranslate"><span class="pre">Op::shared_memory_size</span></code> is sufficient for the launch’s
+third <code class="docutils literal notranslate"><span class="pre">&lt;&lt;&lt;...&gt;&gt;&gt;</span></code> argument. For fused kernels that carve out multiple tile buffers from
+several processing steps in one <code class="docutils literal notranslate"><span class="pre">extern</span> <span class="pre">__shared__</span></code> allocation, use
+<code class="docutils literal notranslate"><span class="pre">shared_memory::compute_total_tile_storage</span></code> (see <a class="reference internal" href="#traits-tile-storage"><span class="std std-ref">TileStorage utilities</span></a>). See <a class="reference internal" href="../get_started/introduction.html#intro"><span class="std std-ref">Image Processing Using NPPDx</span></a>
+for launch examples.</p>
+</section>
+<section id="shared-memory-storage-traits">
+<span id="traits-storage"></span><h2>Shared-memory storage traits<a class="headerlink" href="#shared-memory-storage-traits" title="Link to this heading">#</a></h2>
+<p>Each complete processing step exposes what shared-memory tile buffers the step needs. The
+library derives slot geometry from <code class="docutils literal notranslate"><span class="pre">operation_operator_traits::get_storage_config</span></code> and lifts
+the result into constexpr members on types such as <code class="docutils literal notranslate"><span class="pre">IngestOperation</span></code>:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 34.0%" />
+<col style="width: 66.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Member / trait</p></th>
+<th class="head"><p>Role</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">input_storage</span></code> / <code class="docutils literal notranslate"><span class="pre">input_storage_of_t&lt;Description&gt;</span></code></p></td>
+<td><p>Input tile buffer shape and <code class="docutils literal notranslate"><span class="pre">TileStorage</span></code> type.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">output_storage</span></code> / <code class="docutils literal notranslate"><span class="pre">output_storage_of_t&lt;Description&gt;</span></code></p></td>
+<td><p>Output tile buffer (empty for in-place steps).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">temp_storage</span></code> / <code class="docutils literal notranslate"><span class="pre">temp_storage_of_t&lt;Description&gt;</span></code></p></td>
+<td><p>Intermediate buffer (resize and similar multi-buffer steps).</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Storage patterns by category of step:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 28.0%" />
+<col style="width: 72.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Category</p></th>
+<th class="head"><p>Slots used</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Ingest / exgest</p></td>
+<td><p>Input slot only (memory tile including halo); output and temp slots empty.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Pointwise (color_convert, gamma, affine_channel_map)</p></td>
+<td><p>In-place input slot only.</p></td>
+</tr>
+<tr class="row-even"><td><p>Area (box blur, gaussian, median, sharpen)</p></td>
+<td><p>Separate input and output buffers, same memory-tile size.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Resize</p></td>
+<td><p>Input (source memory tile), output (resized nominal tile), temp (intermediate strip).</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Slot names above refer to <code class="docutils literal notranslate"><span class="pre">storage_config</span></code> members (<code class="docutils literal notranslate"><span class="pre">input_storage</span></code>, <code class="docutils literal notranslate"><span class="pre">output_storage</span></code>,
+<code class="docutils literal notranslate"><span class="pre">temp_storage</span></code>). The corresponding <code class="docutils literal notranslate"><span class="pre">TileStorage</span></code> tuple typedefs are <code class="docutils literal notranslate"><span class="pre">inputs</span></code>, <code class="docutils literal notranslate"><span class="pre">outputs</span></code>,
+and <code class="docutils literal notranslate"><span class="pre">temp</span></code>.</p>
+<p>In a fused kernel, query storage types per processing step – for example
+<code class="docutils literal notranslate"><span class="pre">input_storage_of_t&lt;Ingest&gt;</span></code> for the ingest buffer and <code class="docutils literal notranslate"><span class="pre">output_storage_of_t&lt;BoxBlur&gt;</span></code> for the
+blur output – then pass those types to <a class="reference internal" href="#traits-tile-storage"><span class="std std-ref">TileStorage utilities</span></a> helpers to partition one
+<code class="docutils literal notranslate"><span class="pre">extern</span> <span class="pre">__shared__</span></code> allocation.</p>
+</section>
+<section id="tilestorage-utilities">
+<span id="traits-tile-storage"></span><h2>TileStorage utilities<a class="headerlink" href="#tilestorage-utilities" title="Link to this heading">#</a></h2>
+<p>Header <code class="docutils literal notranslate"><span class="pre">tile_storage.hpp</span></code> defines the leaf shared-memory types; <code class="docutils literal notranslate"><span class="pre">shared_memory.hpp</span></code> adds
+helpers such as <code class="docutils literal notranslate"><span class="pre">compute_total_tile_storage</span></code> and <code class="docutils literal notranslate"><span class="pre">compute_operation_storage</span></code> to size
+dynamic shared memory. Typical workflow:</p>
+<ol class="arabic simple">
+<li><p>Include <code class="docutils literal notranslate"><span class="pre">nppdx/shared_memory.hpp</span></code>.</p></li>
+<li><p>Alias storage types from traits (<code class="docutils literal notranslate"><span class="pre">input_storage_of_t</span></code>, <code class="docutils literal notranslate"><span class="pre">output_storage_of_t</span></code>, …).</p></li>
+<li><p>In the kernel, call <code class="docutils literal notranslate"><span class="pre">shared_memory::slice_into_tile_storage&lt;Types...&gt;(smem)</span></code> to bind typed
+<code class="docutils literal notranslate"><span class="pre">TileStorage</span></code> views to offsets inside dynamic shared memory.</p></li>
+<li><p>On the host, size the launch with <code class="docutils literal notranslate"><span class="pre">Op::shared_memory_size</span></code> when one step’s layout
+covers the allocation, or <code class="docutils literal notranslate"><span class="pre">shared_memory::compute_total_tile_storage&lt;Types...&gt;()</span></code> when
+several processing steps share one <code class="docutils literal notranslate"><span class="pre">extern</span> <span class="pre">__shared__</span></code> block (and
+<code class="docutils literal notranslate"><span class="pre">cudaFuncAttributeMaxDynamicSharedMemorySize</span></code> when required).</p></li>
+</ol>
+<p>Core types:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">shared_memory::ChannelSlice&lt;T,</span> <span class="pre">Width,</span> <span class="pre">Height&gt;</span></code> – one channel plane in shared memory.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">shared_memory::TileStorage&lt;ChannelSliceType,</span> <span class="pre">NumChannels&gt;</span></code> – multi-channel tile;
+<code class="docutils literal notranslate"><span class="pre">from_memory(unsigned</span> <span class="pre">char*)</span></code> placement-news channel data into a sub-range of <code class="docutils literal notranslate"><span class="pre">smem</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">shared_memory::copy_tile_storage(src,</span> <span class="pre">dst)</span></code> – block-wide copy between two
+<code class="docutils literal notranslate"><span class="pre">TileStorage</span></code> objects (ends with <code class="docutils literal notranslate"><span class="pre">__syncthreads()</span></code>).</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">shared_memory::compute_operation_storage&lt;Description&gt;()</span></code> returns the aligned byte count for
+one processing step’s <code class="docutils literal notranslate"><span class="pre">inputs</span></code>, <code class="docutils literal notranslate"><span class="pre">outputs</span></code>, and <code class="docutils literal notranslate"><span class="pre">temp</span></code> slots combined – the same value as
+<code class="docutils literal notranslate"><span class="pre">Description::shared_memory_size</span></code>. Use <code class="docutils literal notranslate"><span class="pre">compute_total_tile_storage</span></code> when several processing
+steps share one allocation in a fused kernel.</p>
+<p>See <code class="docutils literal notranslate"><span class="pre">03_area_operation/box_filter.cu</span></code> and <code class="docutils literal notranslate"><span class="pre">04_resize/fused_resize.cu</span></code> for fused-kernel
+patterns, and <code class="docutils literal notranslate"><span class="pre">00_introduction/introduction_example_shared_memory.cu</span></code> for ingest/exgest only.</p>
+</section>
+<section id="halos-and-step-order">
+<span id="traits-halos"></span><h2>Halos and step order<a class="headerlink" href="#halos-and-step-order" title="Link to this heading">#</a></h2>
+<p>Halo and storage traits mix configured operators (<code class="docutils literal notranslate"><span class="pre">MemoryHalo</span></code>, <code class="docutils literal notranslate"><span class="pre">CumulativeHalo</span></code>,
+<code class="docutils literal notranslate"><span class="pre">TileSize</span></code>) with derived values computed from operator parameters and layout:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 28.0%" />
+<col style="width: 44.0%" />
+<col style="width: 28.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Trait</p></th>
+<th class="head"><p>What it means</p></th>
+<th class="head"><p>Who sets it</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">local_halo_of_v&lt;Description&gt;</span></code></p></td>
+<td><p>Neighborhood support for one step (blur radius, median window, resize filter
+reach, …).</p></td>
+<td><p><strong>Derived</strong> from the function tag and parameter operator via
+<code class="docutils literal notranslate"><span class="pre">operation_operator_traits::get_local_halo</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">memory_halo_of_v&lt;Description&gt;</span></code></p></td>
+<td><p>In-tile buffer border – shared-memory tile capacity for this processing step.</p></td>
+<td><p><strong>Configured</strong> with <code class="docutils literal notranslate"><span class="pre">MemoryHalo&lt;...&gt;</span></code> on the step. Omit only when an empty border is correct.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">cumulative_halo_of_v&lt;Description&gt;</span></code></p></td>
+<td><p>Full cumulative halo – overlap between tiles and extended ingest region for tiled
+processing – or the remaining halo on later steps.</p></td>
+<td><p><strong>Configured</strong> with <code class="docutils literal notranslate"><span class="pre">CumulativeHalo&lt;...&gt;</span></code> on each processing step for Shared-memory
+fused kernels. See the area and resize examples.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">input_storage_of_t&lt;Description&gt;</span></code> <em>(``_t`` example)</em></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">shared_memory::TileStorage</span></code> type for the processing step’s input slot.</p></td>
+<td><p><strong>Derived</strong> from <code class="docutils literal notranslate"><span class="pre">operation_operator_traits::get_storage_config</span></code> (see
+<a class="reference internal" href="#traits-storage"><span class="std std-ref">Shared-memory storage traits</span></a>).</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>For fused kernels, compose local halos from each neighborhood step into the
+cumulative halo – overlap between tiles and extended ingest region for tiled processing
+(the total does not
+change when neighborhood steps are reordered). Set <code class="docutils literal notranslate"><span class="pre">MemoryHalo</span></code> and <code class="docutils literal notranslate"><span class="pre">CumulativeHalo</span></code> on
+each step as needed; see <code class="docutils literal notranslate"><span class="pre">03_area_operation/box_filter.cu</span></code> and
+<code class="docutils literal notranslate"><span class="pre">04_resize/fused_resize.cu</span></code>. Use <code class="docutils literal notranslate"><span class="pre">scale_halo(halo,</span> <span class="pre">num,</span> <span class="pre">den)</span></code> when resize scale factors
+affect halo geometry.</p>
+<p>Reordering image processing steps changes numerics, valid tile bounds, and shared-memory layout. See
+<a class="reference internal" href="../get_started/performance.html#performance"><span class="std std-ref">Achieving High Performance</span></a> for tuning guidance.</p>
+</section>
+<section id="completeness-and-support-checks">
+<span id="traits-support"></span><h2>Completeness and support checks<a class="headerlink" href="#completeness-and-support-checks" title="Link to this heading">#</a></h2>
+<p>Traits also gate whether a processing step can be instantiated:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">is_complete_npp_v&lt;Description&gt;</span></code>: mandatory operators are present (<code class="docutils literal notranslate"><span class="pre">SM</span></code>, <code class="docutils literal notranslate"><span class="pre">Block()</span></code>,
+and either a <code class="docutils literal notranslate"><span class="pre">Function</span></code> or <code class="docutils literal notranslate"><span class="pre">InputOutput</span></code> with the matching format operator).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">is_supported_v&lt;Description,</span> <span class="pre">Architecture&gt;</span></code>: tile size, format, and architecture pass
+internal validity checks (shared-memory limits, cell alignment, minimum SM).</p></li>
+</ul>
+<p>Unsupported combinations fail at compile time when the step’s type is being composed. Use
+<code class="docutils literal notranslate"><span class="pre">is_supported_v</span></code> or the shipped examples to probe a configuration before building a kernel.</p>
+</section>
+<section id="user-facing-vs-derived-traits">
+<h2>User-facing vs derived traits<a class="headerlink" href="#user-facing-vs-derived-traits" title="Link to this heading">#</a></h2>
+<p>Not every trait corresponds to an operator in the public API:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 70.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Configured by operators</p></th>
+<th class="head"><p>Derived by the library</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">TileSize</span></code>, <code class="docutils literal notranslate"><span class="pre">BlockDim</span></code> / <code class="docutils literal notranslate"><span class="pre">Block</span></code>, <code class="docutils literal notranslate"><span class="pre">SM</span></code></p></td>
+<td><p>Tile size, recommended block thread count, <code class="docutils literal notranslate"><span class="pre">elements_per_thread</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Function</span></code> + parameter operators</p></td>
+<td><p>Backend implementation type, <code class="docutils literal notranslate"><span class="pre">inputs</span></code> / <code class="docutils literal notranslate"><span class="pre">outputs</span></code> / <code class="docutils literal notranslate"><span class="pre">temp</span></code> storage typedefs</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">InputFormat</span></code> / <code class="docutils literal notranslate"><span class="pre">OutputFormat</span></code></p></td>
+<td><p>Ingest/exgest load and store paths from <code class="docutils literal notranslate"><span class="pre">packing_format_traits</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Optional <code class="docutils literal notranslate"><span class="pre">MemoryHalo</span></code> / <code class="docutils literal notranslate"><span class="pre">CumulativeHalo</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">MemoryHalo</span></code> – in-tile buffer border; <code class="docutils literal notranslate"><span class="pre">CumulativeHalo</span></code> – full cumulative halo
+(overlap between tiles, extended ingest region).</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">TileSize</span></code> and block geometry are the primary tuning knobs exposed to applications. Cell
+mapping and halo propagation are internal but surface through the launch traits above.</p>
+</section>
+<section id="example-querying-traits-before-launch">
+<h2>Example: querying traits before launch<a class="headerlink" href="#example-querying-traits-before-launch" title="Link to this heading">#</a></h2>
+<p>Register-only API (no shared-memory tile buffers):</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">Ingest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">decltype</span><span class="p">(</span>
+<span class="w">    </span><span class="n">InputOutput</span><span class="o">&lt;</span><span class="n">input_output_direction</span><span class="o">::</span><span class="n">ingest</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="n">InputFormat</span><span class="o">&lt;</span><span class="n">packing_format</span><span class="o">::</span><span class="n">rgb24</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="n">TileSize</span><span class="o">&lt;</span><span class="mi">48</span><span class="p">,</span><span class="w"> </span><span class="mi">48</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="n">Block</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="n">SM</span><span class="o">&lt;</span><span class="mi">900</span><span class="o">&gt;</span><span class="p">());</span>
+
+<span class="k">static_assert</span><span class="p">(</span><span class="n">is_complete_npp_v</span><span class="o">&lt;</span><span class="n">Ingest</span><span class="o">&gt;</span><span class="p">);</span>
+<span class="k">static_assert</span><span class="p">(</span><span class="n">is_supported_v</span><span class="o">&lt;</span><span class="n">Ingest</span><span class="p">,</span><span class="w"> </span><span class="mi">900</span><span class="o">&gt;</span><span class="p">);</span>
+
+<span class="k">constexpr</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">tile</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">tile_size_of_v</span><span class="o">&lt;</span><span class="n">Ingest</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="k">constexpr</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">format</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">packing_format_of_v</span><span class="o">&lt;</span><span class="n">Ingest</span><span class="o">&gt;</span><span class="p">;</span>
+
+<span class="k">const</span><span class="w"> </span><span class="n">dim3</span><span class="w"> </span><span class="n">grid</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">Ingest</span><span class="o">::</span><span class="n">calculate_grid_dim</span><span class="p">(</span><span class="n">width</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="p">);</span>
+<span class="k">const</span><span class="w"> </span><span class="n">dim3</span><span class="w"> </span><span class="n">block</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Ingest</span><span class="o">::</span><span class="n">block_dim</span><span class="p">;</span>
+
+<span class="n">image_processing_kernel</span><span class="o">&lt;</span><span class="n">Ingest</span><span class="p">,</span><span class="w"> </span><span class="n">Exgest</span><span class="o">&gt;</span>
+<span class="w">    </span><span class="o">&lt;&lt;&lt;</span><span class="n">grid</span><span class="p">,</span><span class="w"> </span><span class="n">block</span><span class="o">&gt;&gt;&gt;</span><span class="p">(</span><span class="n">d_in</span><span class="p">,</span><span class="w"> </span><span class="n">d_out</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Shared-memory API fused kernel (ingest <span class="math notranslate nohighlight">\(\rightarrow\)</span> box blur <span class="math notranslate nohighlight">\(\rightarrow\)</span> exgest):</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">InputTileStorage</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">input_storage_of_t</span><span class="o">&lt;</span><span class="n">Ingest</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="k">using</span><span class="w"> </span><span class="n">BlurTileStorage</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">output_storage_of_t</span><span class="o">&lt;</span><span class="n">BoxBlur</span><span class="o">&gt;</span><span class="p">;</span>
+
+<span class="k">constexpr</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">smem_size</span><span class="w"> </span><span class="o">=</span>
+<span class="w">    </span><span class="n">shared_memory</span><span class="o">::</span><span class="n">compute_total_tile_storage</span><span class="o">&lt;</span><span class="n">InputTileStorage</span><span class="p">,</span><span class="w"> </span><span class="n">BlurTileStorage</span><span class="o">&gt;</span><span class="p">();</span>
+
+<span class="n">box_blur_kernel</span><span class="o">&lt;</span><span class="n">Ingest</span><span class="p">,</span><span class="w"> </span><span class="n">BoxBlur</span><span class="p">,</span><span class="w"> </span><span class="n">Exgest</span><span class="p">,</span><span class="w"> </span><span class="n">InputTileStorage</span><span class="p">,</span><span class="w"> </span><span class="n">BlurTileStorage</span><span class="o">&gt;</span>
+<span class="w">    </span><span class="o">&lt;&lt;&lt;</span><span class="n">grid</span><span class="p">,</span><span class="w"> </span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">smem_size</span><span class="o">&gt;&gt;&gt;</span><span class="p">(</span><span class="n">d_in</span><span class="p">,</span><span class="w"> </span><span class="n">d_out</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Inside <code class="docutils literal notranslate"><span class="pre">box_blur_kernel</span></code>, <code class="docutils literal notranslate"><span class="pre">slice_into_tile_storage&lt;InputTileStorage,</span> <span class="pre">BlurTileStorage&gt;(smem)</span></code>
+returns typed <code class="docutils literal notranslate"><span class="pre">TileStorage</span></code> views passed to each processing step’s <code class="docutils literal notranslate"><span class="pre">execute()</span></code> overload.</p>
+</section>
+<section id="see-also">
+<h2>See also<a class="headerlink" href="#see-also" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="operators.html#operators-label"><span class="std std-ref">Operators</span></a>: operators that populate operator traits.</p></li>
+<li><p><a class="reference internal" href="processing_steps.html#processing-steps-label"><span class="std std-ref">Processing overview</span></a>: ingest, exgest, pointwise, and area step descriptions.</p></li>
+<li><p><a class="reference internal" href="../get_started/introduction.html#intro"><span class="std std-ref">Image Processing Using NPPDx</span></a>: ingest/exgest walkthrough and shared-memory fused-kernel patterns.</p></li>
+<li><p><a class="reference internal" href="../get_started/performance.html#performance"><span class="std std-ref">Achieving High Performance</span></a>: how step order and tile geometry affect derived traits.</p></li>
+</ul>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="processing_steps_area.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Area processing steps</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="methods.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Execution Methods (Device API)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+
+
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#architecture-halos-at-compile-time">Architecture – halos at compile time</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#architecture-overview">Architecture overview</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#left-panel-from-user-code-to-operator-implementation">Left panel – from user code to operator implementation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#right-panel-inside-operator-implementation">Right panel – inside operator implementation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-traits-connect-operators-to-device-code">How traits connect operators to device code</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#query-traits">Query traits</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#trait-naming">Trait naming</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#operator-traits">Operator traits</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#packing-format-traits">Packing format traits</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#launch-and-execution-traits">Launch and execution traits</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#shared-memory-storage-traits">Shared-memory storage traits</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tilestorage-utilities">TileStorage utilities</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#halos-and-step-order">Halos and step order</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#completeness-and-support-checks">Completeness and support checks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#user-facing-vs-derived-traits">User-facing vs derived traits</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-querying-traits-before-launch">Example: querying traits before launch</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#see-also">See also</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+<a class="footer-brand logo" href="https://www.nvidia.com">
+  <img src="../_static/nvidia-logo-horiz-rgb-1c-blk-for-screen.svg" class="logo__image only-light" alt="NVIDIA"/>
+  <img src="../_static/nvidia-logo-horiz-rgb-1c-wht-for-screen.svg" class="logo__image only-dark" alt="NVIDIA"/>
+</a></div>
+      
+        <div class="footer-item">
+
+<div class="footer-links">
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/about-nvidia/privacy-policy/">Privacy Policy</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/about-nvidia/privacy-center/">Your Privacy Choices</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/about-nvidia/terms-of-service/">Terms of Service</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/about-nvidia/accessibility/">Accessibility</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/about-nvidia/company-policies/">Corporate Policies</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/product-security/">Product Security</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/contact/">Contact</a>
+  
+  
+  
+</div>
+</div>
+      
+        <div class="footer-item">
+
+
+
+
+  <p class="copyright">
+    
+      Copyright © 2025-2026, NVIDIA Corporation &amp; Affiliates. All rights reserved.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+  </body>
+</html>

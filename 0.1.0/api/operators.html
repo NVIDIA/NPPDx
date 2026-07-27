@@ -1,0 +1,865 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Operators &#8212; NPPDx</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/nvidia-sphinx-theme.css?v=933278ad" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+
+
+
+    <script src="../_static/documentation_options.js?v=2caa9db7"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/operators';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.20.0';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://nvidia.github.io/NPPDx/_static/switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '0.1.0';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner =
+            false;
+        </script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+
+    <link rel="icon" href="../_static/nvidia.ico"/>
+
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Processing overview" href="processing_steps.html" />
+    <link rel="prev" title="Achieving High Performance" href="../get_started/performance.html" />
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.1.0" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+
+
+  </head>
+
+  <body data-default-mode="">
+
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/nvidia-logo-horiz-rgb-blk-for-screen.svg" class="logo__image only-light" alt="NPPDx - Home"/>
+    <img src="../_static/nvidia-logo-horiz-rgb-wht-for-screen.svg" class="logo__image only-dark pst-js-only" alt="NPPDx - Home"/>
+  
+  
+    <p class="title logo__title">NPPDx</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+
+
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/nvidia-logo-horiz-rgb-blk-for-screen.svg" class="logo__image only-light" alt="NPPDx - Home"/>
+    <img src="../_static/nvidia-logo-horiz-rgb-wht-for-screen.svg" class="logo__image only-dark pst-js-only" alt="NPPDx - Home"/>
+  
+  
+    <p class="title logo__title">NPPDx</p>
+  
+</a>
+
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+
+
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Table of Contents">
+  <p class="bd-links__title" role="heading" aria-level="1">Table of Contents</p>
+  <div class="bd-toc-item navbar-nav"><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Home</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../get_started/requirement.html">Requirements and Functionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/introduction.html">Using NPPDx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/performance.html">Achieving High Performance</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Operators</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="processing_steps.html">Processing overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="processing_steps_io.html">I/O steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="processing_steps_pointwise.html">Pointwise processing steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="processing_steps_area.html">Area processing steps</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="traits.html">Traits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="methods.html">Execution Methods</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples List</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://github.com/NVIDIA/NPPDx">GitHub Repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">MathDx</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://developer.nvidia.com/cublasdx-downloads">cuBLASDx</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://developer.nvidia.com/cufftdx-downloads">cuFFTDx</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://developer.nvidia.com/cusolverdx-downloads">cuSolverDx</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://developer.nvidia.com/curanddx-downloads">cuRANDDx</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://developer.nvidia.com/nvcompdx-downloads">nvCOMPDx</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Operators</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="operators">
+<span id="operators-label"></span><h1>Operators<a class="headerlink" href="#operators" title="Link to this heading">#</a></h1>
+<p>Operators are the MathDx <code class="docutils literal notranslate"><span class="pre">+</span></code> pieces used to compose processing steps in a fused
+kernel (ingest, exgest, pointwise, area). Each step also carries the compile-time
+configuration it needs (formats, tile geometry, architecture). NPPDx follows the same MathDx
+programming model as other device extensions libraries: compose each processing step by
+joining operators with <code class="docutils literal notranslate"><span class="pre">+</span></code>.
+See <a class="reference internal" href="../get_started/introduction.html#terminology"><span class="std std-ref">Terminology</span></a>. The library validates each expression and generates specialized
+device code for the specified formats, tile geometry, and target architecture.</p>
+<p>For detailed descriptions of each processing step (I/O, pointwise, and area including
+resize), see <a class="reference internal" href="processing_steps.html#processing-steps-label"><span class="std std-ref">Processing overview</span></a>.</p>
+<p>Operators are composed from two groups:</p>
+<ul class="simple">
+<li><p><strong>Description</strong>: <em>what to execute</em> (I/O direction and format, image-processing function,
+tile size, precision, architecture, and optional Memory halo optimization).</p></li>
+<li><p><strong>Execution</strong>: <em>how to execute</em> on the GPU (block mapping and thread-block size).</p></li>
+</ul>
+<p>Most function processing steps pair a function tag (<code class="docutils literal notranslate"><span class="pre">Function&lt;function::</span> <span class="pre">...&gt;</span></code>) with a
+parameter piece that supplies compile-time values (kernel size, color spaces, resize
+ratio, and so on). Ingest and exgest steps pair <code class="docutils literal notranslate"><span class="pre">InputOutput</span></code> with <code class="docutils literal notranslate"><span class="pre">InputFormat</span></code> or
+<code class="docutils literal notranslate"><span class="pre">OutputFormat</span></code>.</p>
+<section id="composing-a-processing-step">
+<h2>Composing a processing step<a class="headerlink" href="#composing-a-processing-step" title="Link to this heading">#</a></h2>
+<p>Start by joining a series of MathDx operators with <code class="docutils literal notranslate"><span class="pre">+</span></code>.</p>
+<p><strong>Example</strong>: minimal ingest step:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">Ingest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">decltype</span><span class="p">(</span>
+<span class="w">    </span><span class="n">InputOutput</span><span class="o">&lt;</span><span class="n">input_output_direction</span><span class="o">::</span><span class="n">ingest</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="n">InputFormat</span><span class="o">&lt;</span><span class="n">packing_format</span><span class="o">::</span><span class="n">rgb24</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="n">TileSize</span><span class="o">&lt;</span><span class="mi">48</span><span class="p">,</span><span class="w"> </span><span class="mi">48</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="n">Block</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="n">SM</span><span class="o">&lt;</span><span class="mi">900</span><span class="o">&gt;</span><span class="p">());</span>
+</pre></div>
+</div>
+<p><strong>Example</strong> compute step between ingest and exgest:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">Blur</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">decltype</span><span class="p">(</span>
+<span class="w">    </span><span class="n">Function</span><span class="o">&lt;</span><span class="n">function</span><span class="o">::</span><span class="n">box_blur</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="n">BoxBlur</span><span class="o">&lt;</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="n">TileSize</span><span class="o">&lt;</span><span class="mi">48</span><span class="p">,</span><span class="w"> </span><span class="mi">48</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="n">Block</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="n">SM</span><span class="o">&lt;</span><span class="mi">900</span><span class="o">&gt;</span><span class="p">());</span>
+</pre></div>
+</div>
+</section>
+<section id="description-operators">
+<h2>Description operators<a class="headerlink" href="#description-operators" title="Link to this heading">#</a></h2>
+<section id="i-o-operators">
+<span id="io-operators"></span><h3>I/O operators<a class="headerlink" href="#i-o-operators" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 28.0%" />
+<col style="width: 72.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Operator</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">InputOutput&lt;input_output_direction::ingest&gt;</span></code></p></td>
+<td><p><strong>Ingest</strong>: load data arranged in global memory according to its packing format into
+an internal tile (with halo when required). See <a class="reference internal" href="processing_steps_io.html#ingest-step"><span class="std std-ref">Ingest</span></a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">InputOutput&lt;input_output_direction::exgest&gt;</span></code></p></td>
+<td><p><strong>Exgest</strong>: write an internal tile to global memory according to its packing format.
+See <a class="reference internal" href="processing_steps_io.html#exgest-step"><span class="std std-ref">Exgest</span></a>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">InputFormat&lt;packing_format::</span> <span class="pre">...&gt;</span></code></p></td>
+<td><p>Selects the packed input layout for ingest. See <a class="reference internal" href="#packing-formats-list"><span class="std std-ref">Packing formats (InputFormat / OutputFormat)</span></a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">OutputFormat&lt;packing_format::</span> <span class="pre">...&gt;</span></code></p></td>
+<td><p>Selects the packed output layout for exgest. See <a class="reference internal" href="#packing-formats-list"><span class="std std-ref">Packing formats (InputFormat / OutputFormat)</span></a>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="architecture-and-tile-geometry">
+<span id="architecture-tile-operators"></span><h3>Architecture and tile geometry<a class="headerlink" href="#architecture-and-tile-geometry" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 28.0%" />
+<col style="width: 72.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Operator</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">SM&lt;Architecture&gt;</span></code></p></td>
+<td><p>Target GPU architecture (for example <code class="docutils literal notranslate"><span class="pre">SM&lt;900&gt;</span></code> for Hopper). Required for a complete
+operator.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">TileSize&lt;X,</span> <span class="pre">Y&gt;</span></code></p></td>
+<td><p>Tile width and height in pixels. All operators in the same fused kernel must use the
+same tile size.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="function-tag-operator-processing-step">
+<span id="function-tags"></span><h3>Function tag operator (processing step)<a class="headerlink" href="#function-tag-operator-processing-step" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">Function&lt;function::Tag&gt;</span></code> selects the image-processing step. Pair it with the matching
+parameter operator listed in the next section. Detailed behavior is in
+<a class="reference internal" href="processing_steps.html#processing-steps-label"><span class="std std-ref">Processing overview</span></a>.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 28.0%" />
+<col style="width: 72.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><code class="docutils literal notranslate"><span class="pre">function</span></code> value</p></th>
+<th class="head"><p>Kind</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">color_convert</span></code></p></td>
+<td><p>Pointwise color-space / bit-depth conversion. See <a class="reference internal" href="processing_steps_pointwise.html#color-convert-step"><span class="std std-ref">Color convert</span></a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">gamma</span></code></p></td>
+<td><p>Forward or inverse gamma (SDR, HLG, or PQ). See <a class="reference internal" href="processing_steps_pointwise.html#gamma-step"><span class="std std-ref">Gamma</span></a>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">affine_channel_map</span></code></p></td>
+<td><p>Per-channel affine map <code class="docutils literal notranslate"><span class="pre">out</span> <span class="pre">=</span> <span class="pre">(in</span> <span class="pre">+</span> <span class="pre">pre)</span> <span class="pre">*</span> <span class="pre">num</span> <span class="pre">/</span> <span class="pre">den</span> <span class="pre">+</span> <span class="pre">post</span></code>. See
+<a class="reference internal" href="processing_steps_pointwise.html#affine-channel-map-step"><span class="std std-ref">Affine channel map</span></a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">box_blur</span></code></p></td>
+<td><p>Box blur (arithmetic mean); kernel size from <code class="docutils literal notranslate"><span class="pre">BoxBlur&lt;W,</span> <span class="pre">H&gt;</span></code>. See
+<a class="reference internal" href="processing_steps_area.html#box-blur-operator"><span class="std std-ref">Box blur</span></a>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">gaussian_blur</span></code></p></td>
+<td><p>Discrete Gaussian FIR; pixel radius from <code class="docutils literal notranslate"><span class="pre">GaussianBlur&lt;RadiusTenths,</span> <span class="pre">TailWidth&gt;</span></code>. See
+<a class="reference internal" href="processing_steps_area.html#gaussian-blur-operator"><span class="std std-ref">Gaussian blur</span></a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">median</span></code></p></td>
+<td><p>Median filter; shape from <code class="docutils literal notranslate"><span class="pre">Median&lt;median_radius::</span> <span class="pre">...&gt;</span></code>. See <a class="reference internal" href="processing_steps_area.html#median-operator"><span class="std std-ref">Median filter</span></a>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sharpen</span></code></p></td>
+<td><p>3x3 convolutional sharpen; weights from <code class="docutils literal notranslate"><span class="pre">Sharpen&lt;Weights&gt;</span></code>. See
+<a class="reference internal" href="processing_steps_area.html#sharpen-operator"><span class="std std-ref">Sharpen</span></a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">resize</span></code></p></td>
+<td><p>Rational resize <code class="docutils literal notranslate"><span class="pre">J</span></code> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <code class="docutils literal notranslate"><span class="pre">K</span></code> samples; method from <code class="docutils literal notranslate"><span class="pre">Resize&lt;J,</span> <span class="pre">K,</span> <span class="pre">Method&gt;</span></code>. See
+<a class="reference internal" href="processing_steps_area.html#resize-operator"><span class="std std-ref">Resize</span></a>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="function-parameter-operators">
+<h3>Function parameter operators<a class="headerlink" href="#function-parameter-operators" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 32.0%" />
+<col style="width: 68.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Operator</p></th>
+<th class="head"><p>Parameters / notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ColorConvert&lt;InputCS,</span> <span class="pre">OutputCS,</span> <span class="pre">InputDepth,</span> <span class="pre">OutputDepth&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">color_space</span></code>: <code class="docutils literal notranslate"><span class="pre">rgb</span></code>, <code class="docutils literal notranslate"><span class="pre">yuv_bt601</span></code>, <code class="docutils literal notranslate"><span class="pre">yuv_bt709</span></code>, <code class="docutils literal notranslate"><span class="pre">yuv_bt2020</span></code>. <code class="docutils literal notranslate"><span class="pre">bit_depth</span></code>:
+<code class="docutils literal notranslate"><span class="pre">bpp_8u</span></code>, <code class="docutils literal notranslate"><span class="pre">bpp_10u</span></code>, <code class="docutils literal notranslate"><span class="pre">bpp_16u</span></code>. See <a class="reference internal" href="processing_steps_pointwise.html#color-convert-step"><span class="std std-ref">Color convert</span></a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">GammaTransform&lt;BitDepth,</span> <span class="pre">Direction,</span> <span class="pre">TransferFunction&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gamma_dir</span></code>: <code class="docutils literal notranslate"><span class="pre">forward</span></code>, <code class="docutils literal notranslate"><span class="pre">inverse</span></code>. <code class="docutils literal notranslate"><span class="pre">gamma_transfer_function</span></code>: <code class="docutils literal notranslate"><span class="pre">SDR</span></code>, <code class="docutils literal notranslate"><span class="pre">HLG</span></code>,
+<code class="docutils literal notranslate"><span class="pre">PQ</span></code>. See <a class="reference internal" href="processing_steps_pointwise.html#gamma-step"><span class="std std-ref">Gamma</span></a>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">AffineChannelMap&lt;Pre,</span> <span class="pre">Num,</span> <span class="pre">Den,</span> <span class="pre">Post[,</span> <span class="pre">ClipMin,</span> <span class="pre">ClipMax]&gt;</span></code></p></td>
+<td><p>Integer affine coefficients; use <code class="docutils literal notranslate"><span class="pre">NPPDX_AFFINE_NO_CLIP</span></code> to disable a clip bound.
+See <a class="reference internal" href="processing_steps_pointwise.html#affine-channel-map-step"><span class="std std-ref">Affine channel map</span></a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">BoxBlur&lt;Width,</span> <span class="pre">Height&gt;</span></code></p></td>
+<td><p>Odd kernel sizes <span class="math notranslate nohighlight">\(\geq\)</span> 1. See <a class="reference internal" href="processing_steps_area.html#box-blur-operator"><span class="std std-ref">Box blur</span></a>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">GaussianBlur&lt;RadiusTenths[,</span> <span class="pre">TailWidth]&gt;</span></code></p></td>
+<td><p>Pixel radius 0.1–10.0 (<code class="docutils literal notranslate"><span class="pre">RadiusTenths</span></code> 1–100). Optional <code class="docutils literal notranslate"><span class="pre">TailWidth</span></code>:
+<code class="docutils literal notranslate"><span class="pre">standard</span></code> (default) or <code class="docutils literal notranslate"><span class="pre">wide</span></code> (same <span class="math notranslate nohighlight">\(\sigma\)</span>, greater support;
+<code class="docutils literal notranslate"><span class="pre">RadiusTenths</span></code> <span class="math notranslate nohighlight">\(\leq\)</span> 50). See <a class="reference internal" href="processing_steps_area.html#gaussian-blur-operator"><span class="std std-ref">Gaussian blur</span></a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Median&lt;Radius&gt;</span></code></p></td>
+<td><p>Square (<code class="docutils literal notranslate"><span class="pre">r1_0</span></code>, <code class="docutils literal notranslate"><span class="pre">r2_0</span></code>) and round (<code class="docutils literal notranslate"><span class="pre">r0_5</span></code>, <code class="docutils literal notranslate"><span class="pre">r1_5</span></code>) neighborhoods. See
+<a class="reference internal" href="processing_steps_area.html#median-operator"><span class="std std-ref">Median filter</span></a>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Sharpen&lt;Weights&gt;</span></code></p></td>
+<td><p>3x3 convolutional sharpen; use <code class="docutils literal notranslate"><span class="pre">sharpen_weights::rosenfeld_generalized_weights&lt;N&gt;</span></code> for
+generalized Laplacian. See <a class="reference internal" href="processing_steps_area.html#sharpen-operator"><span class="std std-ref">Sharpen</span></a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Resize&lt;J,</span> <span class="pre">K,</span> <span class="pre">Method&gt;</span></code></p></td>
+<td><p>Coprime <code class="docutils literal notranslate"><span class="pre">J</span></code>, <code class="docutils literal notranslate"><span class="pre">K</span></code>. <code class="docutils literal notranslate"><span class="pre">interpolation_method</span></code>: <code class="docutils literal notranslate"><span class="pre">nearest</span></code>, <code class="docutils literal notranslate"><span class="pre">bilinear</span></code>, <code class="docutils literal notranslate"><span class="pre">bicubic</span></code>,
+<code class="docutils literal notranslate"><span class="pre">lanczos3</span></code>. See <a class="reference internal" href="processing_steps_area.html#resize-operator"><span class="std std-ref">Resize</span></a>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="halo-operators">
+<span id="id1"></span><h3>Halo operators<a class="headerlink" href="#halo-operators" title="Link to this heading">#</a></h3>
+<p>Neighborhood steps derive a local halo from their parameter operator. A fused kernel’s
+cumulative halo is composed from those local halos – overlap between tiles and extended
+ingest region for tiled processing – and the remaining halo on each step is tracked through <code class="docutils literal notranslate"><span class="pre">MemoryHalo</span></code> and
+<code class="docutils literal notranslate"><span class="pre">CumulativeHalo</span></code> (see <a class="reference internal" href="traits.html#traits-halos"><span class="std std-ref">Halos and step order</span></a>).</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 28.0%" />
+<col style="width: 72.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Operator</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">MemoryHalo&lt;LeftTop,</span> <span class="pre">RightBottom&gt;</span></code></p></td>
+<td><p>Override the in-tile buffer border for this step (advanced). <code class="docutils literal notranslate"><span class="pre">LeftTop</span></code> and
+<code class="docutils literal notranslate"><span class="pre">RightBottom</span></code> are <code class="docutils literal notranslate"><span class="pre">Int2D</span></code> compile-time values.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">CumulativeHalo&lt;LeftTop,</span> <span class="pre">RightBottom&gt;</span></code></p></td>
+<td><p>Remaining halo on this step. On ingest, set to the fused kernel’s full cumulative
+halo – minimum additional data so every processing step can run without boundary-condition
+considerations – composed from the local
+halos of neighborhood steps in the kernel. Set <code class="docutils literal notranslate"><span class="pre">MemoryHalo</span></code> and <code class="docutils literal notranslate"><span class="pre">CumulativeHalo</span></code>
+on each step as in the area and resize examples; they are not automatically filled in.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="packing-formats-inputformat-outputformat">
+<span id="packing-formats-list"></span><h3>Packing formats (<code class="docutils literal notranslate"><span class="pre">InputFormat</span></code> / <code class="docutils literal notranslate"><span class="pre">OutputFormat</span></code>)<a class="headerlink" href="#packing-formats-inputformat-outputformat" title="Link to this heading">#</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">packing_format</span></code> enumerators available for I/O operators:</p>
+<p>Packed RGB: <code class="docutils literal notranslate"><span class="pre">rgb24</span></code>, <code class="docutils literal notranslate"><span class="pre">rgb10</span></code>, <code class="docutils literal notranslate"><span class="pre">rgb16</span></code></p>
+<p>Packed YUV 4:2:2: <code class="docutils literal notranslate"><span class="pre">yuv2</span></code>, <code class="docutils literal notranslate"><span class="pre">y210</span></code>, <code class="docutils literal notranslate"><span class="pre">uyvp</span></code>, <code class="docutils literal notranslate"><span class="pre">v210</span></code></p>
+<p>Semi-planar YUV: <code class="docutils literal notranslate"><span class="pre">nv12</span></code>, <code class="docutils literal notranslate"><span class="pre">p010</span></code> (4:2:0); <code class="docutils literal notranslate"><span class="pre">nv16</span></code>, <code class="docutils literal notranslate"><span class="pre">p216</span></code> (4:2:2)</p>
+<p>Planar: <code class="docutils literal notranslate"><span class="pre">rgbp</span></code>, <code class="docutils literal notranslate"><span class="pre">bgrp</span></code>; <code class="docutils literal notranslate"><span class="pre">yuv420p</span></code>, <code class="docutils literal notranslate"><span class="pre">yuv420p10</span></code>; <code class="docutils literal notranslate"><span class="pre">yuv422p</span></code>, <code class="docutils literal notranslate"><span class="pre">yuv422p10</span></code>;
+<code class="docutils literal notranslate"><span class="pre">yuv444p</span></code>, <code class="docutils literal notranslate"><span class="pre">yuv444p10</span></code></p>
+<p>See <a class="reference internal" href="../get_started/requirement.html#requirements"><span class="std std-ref">Requirements and Functionality</span></a> for release-level format support. The authoritative enum is in
+<code class="docutils literal notranslate"><span class="pre">operators/formats.hpp</span></code>.</p>
+</section>
+</section>
+<section id="execution-operators">
+<span id="id2"></span><h2>Execution operators<a class="headerlink" href="#execution-operators" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 28.0%" />
+<col style="width: 72.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Operator</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Block</span></code></p></td>
+<td><p>Block-level execution mapping (the supported execution mode in the current release).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">BlockDim&lt;X,</span> <span class="pre">1,</span> <span class="pre">1&gt;</span></code></p></td>
+<td><p>CUDA thread-block size. NPPDx uses 1D thread indexing: <code class="docutils literal notranslate"><span class="pre">Y</span></code> and <code class="docutils literal notranslate"><span class="pre">Z</span></code> must be <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="complete-processing-steps-composed-operators">
+<h2>Complete processing steps (composed operators)<a class="headerlink" href="#complete-processing-steps-composed-operators" title="Link to this heading">#</a></h2>
+<p>A processing step is complete when it includes the operators required for its role:</p>
+<ul class="simple">
+<li><p><strong>Ingest / exgest</strong>: <code class="docutils literal notranslate"><span class="pre">InputOutput</span></code>, matching format operator, <code class="docutils literal notranslate"><span class="pre">TileSize</span></code>, <code class="docutils literal notranslate"><span class="pre">Block</span></code>,
+<code class="docutils literal notranslate"><span class="pre">SM</span></code>, and (for block Shared-memory APIs) <code class="docutils literal notranslate"><span class="pre">BlockDim</span></code>.</p></li>
+<li><p><strong>Function operator</strong>: <code class="docutils literal notranslate"><span class="pre">Function&lt;...&gt;</span></code>, matching parameter operator, <code class="docutils literal notranslate"><span class="pre">TileSize</span></code>, <code class="docutils literal notranslate"><span class="pre">Block</span></code>,
+<code class="docutils literal notranslate"><span class="pre">SM</span></code>, and <code class="docutils literal notranslate"><span class="pre">BlockDim</span></code> when executing on a block.</p></li>
+</ul>
+<p>Use <a class="reference internal" href="traits.html#traits-support"><span class="std std-ref">is_supported_v</span></a> or the shipped examples to confirm that a specific combination of
+operators, tile size, format, and architecture is implemented for the workload.</p>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../get_started/performance.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Achieving High Performance</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="processing_steps.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Processing overview</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+
+
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#composing-a-processing-step">Composing a processing step</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#description-operators">Description operators</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#i-o-operators">I/O operators</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#architecture-and-tile-geometry">Architecture and tile geometry</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#function-tag-operator-processing-step">Function tag operator (processing step)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#function-parameter-operators">Function parameter operators</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#halo-operators">Halo operators</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#packing-formats-inputformat-outputformat">Packing formats (<code class="docutils literal notranslate"><span class="pre">InputFormat</span></code> / <code class="docutils literal notranslate"><span class="pre">OutputFormat</span></code>)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#execution-operators">Execution operators</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#complete-processing-steps-composed-operators">Complete processing steps (composed operators)</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+<a class="footer-brand logo" href="https://www.nvidia.com">
+  <img src="../_static/nvidia-logo-horiz-rgb-1c-blk-for-screen.svg" class="logo__image only-light" alt="NVIDIA"/>
+  <img src="../_static/nvidia-logo-horiz-rgb-1c-wht-for-screen.svg" class="logo__image only-dark" alt="NVIDIA"/>
+</a></div>
+      
+        <div class="footer-item">
+
+<div class="footer-links">
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/about-nvidia/privacy-policy/">Privacy Policy</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/about-nvidia/privacy-center/">Your Privacy Choices</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/about-nvidia/terms-of-service/">Terms of Service</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/about-nvidia/accessibility/">Accessibility</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/about-nvidia/company-policies/">Corporate Policies</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/product-security/">Product Security</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/contact/">Contact</a>
+  
+  
+  
+</div>
+</div>
+      
+        <div class="footer-item">
+
+
+
+
+  <p class="copyright">
+    
+      Copyright © 2025-2026, NVIDIA Corporation &amp; Affiliates. All rights reserved.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+  </body>
+</html>

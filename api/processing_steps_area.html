@@ -1,0 +1,882 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Area processing steps &#8212; NPPDx</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/nvidia-sphinx-theme.css?v=933278ad" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+
+
+
+    <script src="../_static/documentation_options.js?v=2caa9db7"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/processing_steps_area';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.20.0';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://nvidia.github.io/NPPDx/_static/switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '0.1.0';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner =
+            false;
+        </script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+
+    <link rel="icon" href="../_static/nvidia.ico"/>
+
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Traits" href="traits.html" />
+    <link rel="prev" title="Pointwise processing steps" href="processing_steps_pointwise.html" />
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.1.0" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+
+
+  </head>
+
+  <body data-default-mode="">
+
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/nvidia-logo-horiz-rgb-blk-for-screen.svg" class="logo__image only-light" alt="NPPDx - Home"/>
+    <img src="../_static/nvidia-logo-horiz-rgb-wht-for-screen.svg" class="logo__image only-dark pst-js-only" alt="NPPDx - Home"/>
+  
+  
+    <p class="title logo__title">NPPDx</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+
+
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/nvidia-logo-horiz-rgb-blk-for-screen.svg" class="logo__image only-light" alt="NPPDx - Home"/>
+    <img src="../_static/nvidia-logo-horiz-rgb-wht-for-screen.svg" class="logo__image only-dark pst-js-only" alt="NPPDx - Home"/>
+  
+  
+    <p class="title logo__title">NPPDx</p>
+  
+</a>
+
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+
+
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Table of Contents">
+  <p class="bd-links__title" role="heading" aria-level="1">Table of Contents</p>
+  <div class="bd-toc-item navbar-nav"><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Home</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../get_started/requirement.html">Requirements and Functionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/introduction.html">Using NPPDx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/performance.html">Achieving High Performance</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="operators.html">Operators</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="processing_steps.html">Processing overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="processing_steps_io.html">I/O steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="processing_steps_pointwise.html">Pointwise processing steps</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Area processing steps</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="traits.html">Traits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="methods.html">Execution Methods</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples List</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://github.com/NVIDIA/NPPDx">GitHub Repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">MathDx</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://developer.nvidia.com/cublasdx-downloads">cuBLASDx</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://developer.nvidia.com/cufftdx-downloads">cuFFTDx</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://developer.nvidia.com/cusolverdx-downloads">cuSolverDx</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://developer.nvidia.com/curanddx-downloads">cuRANDDx</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://developer.nvidia.com/nvcompdx-downloads">nvCOMPDx</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="operators.html" class="nav-link">Operators</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Area processing steps</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="area-processing-steps">
+<span id="processing-steps-area"></span><h1>Area processing steps<a class="headerlink" href="#area-processing-steps" title="Link to this heading">#</a></h1>
+<p>Area processing steps use a neighborhood of samples and therefore a non-zero local halo (the halo describes the neighborhood). They require the
+Shared-memory API. Some area processing steps may also require temporary storage. Compose halo on ingest and on each neighborhood step with
+<a class="reference internal" href="operators.html#halo-operators"><span class="std std-ref">Halo operators</span></a> (see also <a class="reference internal" href="traits.html#traits-halos"><span class="std std-ref">Halos and step order</span></a>). Resize is included as an area processing step
+because it needs halo and changes tile geometry like other area family steps.</p>
+<section id="box-blur">
+<span id="box-blur-operator"></span><h2>Box blur<a class="headerlink" href="#box-blur" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">function::box_blur</span></code>. <code class="docutils literal notranslate"><span class="pre">Function&lt;function::box_blur&gt;()</span></code> with <code class="docutils literal notranslate"><span class="pre">BoxBlur&lt;Width,</span> <span class="pre">Height&gt;</span></code> applies a NxM
+box filter (arithmetic mean) over the internal tile. <code class="docutils literal notranslate"><span class="pre">Width</span></code> and <code class="docutils literal notranslate"><span class="pre">Height</span></code> must be odd
+integers <span class="math notranslate nohighlight">\(\geq\)</span> 1. The required halo is <code class="docutils literal notranslate"><span class="pre">(Width</span> <span class="pre">-</span> <span class="pre">1)</span> <span class="pre">/</span> <span class="pre">2</span></code> horizontally and <code class="docutils literal notranslate"><span class="pre">(Height</span> <span class="pre">-</span> <span class="pre">1)</span> <span class="pre">/</span> <span class="pre">2</span></code>
+vertically.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">BoxBlur3x3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">decltype</span><span class="p">(</span>
+<span class="w">    </span><span class="n">Function</span><span class="o">&lt;</span><span class="n">function</span><span class="o">::</span><span class="n">box_blur</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="n">BoxBlur</span><span class="o">&lt;</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="n">TileSize</span><span class="o">&lt;</span><span class="mi">48</span><span class="p">,</span><span class="w"> </span><span class="mi">48</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="n">Block</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="n">SM</span><span class="o">&lt;</span><span class="mi">900</span><span class="o">&gt;</span><span class="p">());</span>
+</pre></div>
+</div>
+<p>Each output sample is the average of all samples in the <code class="docutils literal notranslate"><span class="pre">Width</span> <span class="pre">x</span> <span class="pre">Height</span></code> neighborhood. The
+cell-based implementation uses a sliding-window. Box blur is a common building block for
+multi-pass smoothing (for example, three or more passes approximate a wider Gaussian).</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><code class="docutils literal notranslate"><span class="pre">Width</span></code> and <code class="docutils literal notranslate"><span class="pre">Height</span></code> must be odd integers <span class="math notranslate nohighlight">\(\geq\)</span> 1. <code class="docutils literal notranslate"><span class="pre">BoxBlur</span></code> enforces this at compile
+time with <code class="docutils literal notranslate"><span class="pre">static_assert</span></code>; even dimensions are rejected rather than accepted with a
+shifted kernel.</p>
+</div>
+</section>
+<section id="gaussian-blur">
+<span id="gaussian-blur-operator"></span><h2>Gaussian blur<a class="headerlink" href="#gaussian-blur" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">function::gaussian_blur</span></code>. <code class="docutils literal notranslate"><span class="pre">Function&lt;function::gaussian_blur&gt;()</span></code> with <code class="docutils literal notranslate"><span class="pre">GaussianBlur&lt;RadiusTenths[,</span> <span class="pre">TailWidth]&gt;</span></code> applies a
+discrete Gaussian FIR (Finite Impulse Response) filter over the internal tile. <code class="docutils literal notranslate"><span class="pre">RadiusTenths</span></code> is an integer from
+1 to 100, giving a pixel radius of 0.1 to 10.0 in steps of 0.1 (for example <code class="docutils literal notranslate"><span class="pre">20</span></code> <span class="math notranslate nohighlight">\(\rightarrow\)</span> pixel radius
+2.0).  (As a rule of thumb, a pixel radius of 1.0 tends to remove detail that is 1.0 pixel or less in size.)</p>
+<p>Optional <code class="docutils literal notranslate"><span class="pre">TailWidth</span></code> selects neighborhood size for the same <span class="math notranslate nohighlight">\(\sigma\)</span> (default
+<code class="docutils literal notranslate"><span class="pre">gaussian_tail_width::standard</span></code>):</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">standard</span></code>: discrete Gaussian with <span class="math notranslate nohighlight">\(\sigma\)</span> = RadiusTenths/10; neighborhood sized for
+approximately one <span class="math notranslate nohighlight">\(\sigma\)</span> of support.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wide</span></code>: at the same pixel radius, <span class="math notranslate nohighlight">\(\sigma\)</span> = RadiusTenths/10; larger support neighborhood (approximately two
+<span class="math notranslate nohighlight">\(\sigma\)</span> of support). The extra support improves accuracy by retaining more of the
+Gaussian tails. <code class="docutils literal notranslate"><span class="pre">wide</span></code> requires <code class="docutils literal notranslate"><span class="pre">RadiusTenths</span></code> <span class="math notranslate nohighlight">\(\leq\)</span> 50 so the neighborhood stays
+within the library maximum of 21x21.</p></li>
+</ul>
+<p>Neighborhood size grows with pixel radius; halo is half the neighborhood width.
+For <code class="docutils literal notranslate"><span class="pre">wide</span></code>, the neighborhood is about twice as wide as <code class="docutils literal notranslate"><span class="pre">standard</span></code> for the same <code class="docutils literal notranslate"><span class="pre">RadiusTenths</span></code>
+(for example 35 is 9x9 for <code class="docutils literal notranslate"><span class="pre">standard</span></code> and 17x17 for <code class="docutils literal notranslate"><span class="pre">wide</span></code>).</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 16.0%" />
+<col style="width: 32.0%" />
+<col style="width: 26.0%" />
+<col style="width: 26.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Range <code class="docutils literal notranslate"><span class="pre">RadiusTenths</span></code></p></th>
+<th class="head"><p>Neighborhood <code class="docutils literal notranslate"><span class="pre">standard</span></code></p></th>
+<th class="head"><p>Neighborhood <code class="docutils literal notranslate"><span class="pre">wide</span></code></p></th>
+<th class="head"><p>Actual pixel radius (<span class="math notranslate nohighlight">\(\sigma\)</span>)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1–9</p></td>
+<td><p>3x3</p></td>
+<td><p>5x5</p></td>
+<td><p>0.1–0.9</p></td>
+</tr>
+<tr class="row-odd"><td><p>10–20</p></td>
+<td><p>5x5</p></td>
+<td><p>9x9</p></td>
+<td><p>1.0–2.0</p></td>
+</tr>
+<tr class="row-even"><td><p>21–30</p></td>
+<td><p>7x7</p></td>
+<td><p>13x13</p></td>
+<td><p>2.1–3.0</p></td>
+</tr>
+<tr class="row-odd"><td><p>31–40</p></td>
+<td><p>9x9</p></td>
+<td><p>17x17</p></td>
+<td><p>3.1–4.0</p></td>
+</tr>
+<tr class="row-even"><td><p>41–50</p></td>
+<td><p>11x11</p></td>
+<td><p>21x21</p></td>
+<td><p>4.1–5.0</p></td>
+</tr>
+<tr class="row-odd"><td><p>51–60</p></td>
+<td><p>13x13</p></td>
+<td><p>n/a (<code class="docutils literal notranslate"><span class="pre">wide</span></code> not supported)</p></td>
+<td><p>5.1–6.0</p></td>
+</tr>
+<tr class="row-even"><td><p>61–70</p></td>
+<td><p>15x15</p></td>
+<td><p>n/a</p></td>
+<td><p>6.1–7.0</p></td>
+</tr>
+<tr class="row-odd"><td><p>71–80</p></td>
+<td><p>17x17</p></td>
+<td><p>n/a</p></td>
+<td><p>7.1–8.0</p></td>
+</tr>
+<tr class="row-even"><td><p>81–90</p></td>
+<td><p>19x19</p></td>
+<td><p>n/a</p></td>
+<td><p>8.1–9.0</p></td>
+</tr>
+<tr class="row-odd"><td><p>91–100</p></td>
+<td><p>21x21</p></td>
+<td><p>n/a</p></td>
+<td><p>9.1–10.0</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Radius 2.0, standard neighborhood, requires 2 halo on each side</span>
+<span class="k">using</span><span class="w"> </span><span class="n">Gaussian2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">decltype</span><span class="p">(</span>
+<span class="w">    </span><span class="n">Function</span><span class="o">&lt;</span><span class="n">function</span><span class="o">::</span><span class="n">gaussian_blur</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="n">GaussianBlur</span><span class="o">&lt;</span><span class="mi">20</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="n">TileSize</span><span class="o">&lt;</span><span class="mi">48</span><span class="p">,</span><span class="w"> </span><span class="mi">48</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="n">Block</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="n">SM</span><span class="o">&lt;</span><span class="mi">900</span><span class="o">&gt;</span><span class="p">());</span>
+
+<span class="c1">// Radius 3.5, same sigma, wide neighborhood (17x17), halo 8</span>
+<span class="k">using</span><span class="w"> </span><span class="n">GaussianWide35</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">decltype</span><span class="p">(</span>
+<span class="w">    </span><span class="n">Function</span><span class="o">&lt;</span><span class="n">function</span><span class="o">::</span><span class="n">gaussian_blur</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="n">GaussianBlur</span><span class="o">&lt;</span><span class="mi">35</span><span class="p">,</span><span class="w"> </span><span class="n">gaussian_tail_width</span><span class="o">::</span><span class="n">wide</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="n">TileSize</span><span class="o">&lt;</span><span class="mi">48</span><span class="p">,</span><span class="w"> </span><span class="mi">48</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="n">Block</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="n">SM</span><span class="o">&lt;</span><span class="mi">900</span><span class="o">&gt;</span><span class="p">());</span>
+</pre></div>
+</div>
+<p>Three or more passes of box blur can approximate a Gaussian (see box blur above); <code class="docutils literal notranslate"><span class="pre">gaussian_blur</span></code> uses
+an explicit FIR instead. See <code class="docutils literal notranslate"><span class="pre">03_area_operation/gaussian_blur_fused_conversion.cu</span></code>.</p>
+</section>
+<section id="median-filter">
+<span id="median-operator"></span><h2>Median filter<a class="headerlink" href="#median-filter" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">function::median</span></code>. <code class="docutils literal notranslate"><span class="pre">Function&lt;function::median&gt;()</span></code> with <code class="docutils literal notranslate"><span class="pre">Median&lt;median_radius::</span> <span class="pre">...&gt;</span></code> selects the median of a
+fixed neighborhood on the internal tile. NPPDx distinguishes square windows (full
+rectangular kernels) from round windows (plus-shaped or corner-trimmed neighborhoods).</p>
+<p>The round medians are slightly faster and more isotropic than the square medians and their diagonal
+artifacts are minimized.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 18.0%" />
+<col style="width: 14.0%" />
+<col style="width: 14.0%" />
+<col style="width: 54.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><code class="docutils literal notranslate"><span class="pre">median_radius</span></code></p></th>
+<th class="head"><p>Shape</p></th>
+<th class="head"><p>Samples</p></th>
+<th class="head"><p>Neighborhood</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">r0_5</span></code></p></td>
+<td><p>Round</p></td>
+<td><p>5</p></td>
+<td><p><strong>Plus</strong> (cross): center pixel and its four axis neighbors in a 3x3 footprint.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">r1_0</span></code></p></td>
+<td><p>Square</p></td>
+<td><p>9</p></td>
+<td><p><strong>3x3 Median filter</strong>. NPP 3x3 median equivalent; see <code class="docutils literal notranslate"><span class="pre">03_area_operation/median_fused_conversion.cu</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">r1_5</span></code></p></td>
+<td><p>Round</p></td>
+<td><p>21</p></td>
+<td><p><strong>Round 5x5</strong>: all positions in a 5x5 square except the four corners.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">r2_0</span></code></p></td>
+<td><p>Square</p></td>
+<td><p>25</p></td>
+<td><p><strong>5x5 Median Filter</strong>. NPP 5x5 median equivalent.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Halo size follows the extent of the neighborhood: 1 pixel for <code class="docutils literal notranslate"><span class="pre">r0_5</span></code> and <code class="docutils literal notranslate"><span class="pre">r1_0</span></code>;
+2 pixels for <code class="docutils literal notranslate"><span class="pre">r1_5</span></code> and <code class="docutils literal notranslate"><span class="pre">r2_0</span></code>.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Square 3x3 median</span>
+<span class="k">using</span><span class="w"> </span><span class="n">Median3x3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">decltype</span><span class="p">(</span>
+<span class="w">    </span><span class="n">Function</span><span class="o">&lt;</span><span class="n">function</span><span class="o">::</span><span class="n">median</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="n">Median</span><span class="o">&lt;</span><span class="n">median_radius</span><span class="o">::</span><span class="n">r1_0</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="n">TileSize</span><span class="o">&lt;</span><span class="mi">48</span><span class="p">,</span><span class="w"> </span><span class="mi">48</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="n">Block</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="n">SM</span><span class="o">&lt;</span><span class="mi">900</span><span class="o">&gt;</span><span class="p">());</span>
+
+<span class="c1">// Round 21-sample median (5x5 minus corners)</span>
+<span class="k">using</span><span class="w"> </span><span class="n">MedianRound</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">decltype</span><span class="p">(</span>
+<span class="w">    </span><span class="n">Function</span><span class="o">&lt;</span><span class="n">function</span><span class="o">::</span><span class="n">median</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="n">Median</span><span class="o">&lt;</span><span class="n">median_radius</span><span class="o">::</span><span class="n">r1_5</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="n">TileSize</span><span class="o">&lt;</span><span class="mi">48</span><span class="p">,</span><span class="w"> </span><span class="mi">48</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="n">Block</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="n">SM</span><span class="o">&lt;</span><span class="mi">900</span><span class="o">&gt;</span><span class="p">());</span>
+</pre></div>
+</div>
+</section>
+<section id="sharpen">
+<span id="sharpen-operator"></span><h2>Sharpen<a class="headerlink" href="#sharpen" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">function::sharpen</span></code>. <code class="docutils literal notranslate"><span class="pre">Function&lt;function::sharpen&gt;()</span></code> with <code class="docutils literal notranslate"><span class="pre">Sharpen&lt;Weights&gt;</span></code> applies a 3x3 convolutional
+sharpen on the internal tile. <code class="docutils literal notranslate"><span class="pre">Weights</span></code> is a type with compile-time <code class="docutils literal notranslate"><span class="pre">corner_w</span></code>,
+<code class="docutils literal notranslate"><span class="pre">side_w</span></code>, and <code class="docutils literal notranslate"><span class="pre">center_w</span></code> members that map to a symmetric kernel:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[  A   B   A  ]
+[  B   C   B  ]          4*A + 4*B + C = 1
+[  A   B   A  ]
+</pre></div>
+</div>
+<p>Valid sharpen kernels satisfy 4*A + 4*B + C = 1 (DC gain unity). Two common
+integer presets, shown side by side:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>4-Neighbor Laplacian      8-Neighbor Laplacian
+ [   0  -1   0  ]          [  -1  -1  -1  ]
+ [  -1   5  -1  ]          [  -1   9  -1  ]
+ [   0  -1   0  ]          [  -1  -1  -1  ]
+
+ (A=0, B=-1, C=5)          (A=-1, B=-1, C=9)
+</pre></div>
+</div>
+<p>Express either preset with a <code class="docutils literal notranslate"><span class="pre">Weights</span></code> type whose <code class="docutils literal notranslate"><span class="pre">corner_w</span></code>, <code class="docutils literal notranslate"><span class="pre">side_w</span></code>, and <code class="docutils literal notranslate"><span class="pre">center_w</span></code>
+match the table above, then <code class="docutils literal notranslate"><span class="pre">Sharpen&lt;Weights&gt;()</span></code>.</p>
+<p>The built-in <code class="docutils literal notranslate"><span class="pre">sharpen_weights::rosenfeld_generalized_weights&lt;WeightPercent&gt;</span></code> implements a
+generalized additive Rosenfeld Laplacian. <code class="docutils literal notranslate"><span class="pre">WeightPercent</span></code> (0–100) interpolates between
+identity and a 50%-strength kernel.  The isotropic Rosenfeld kernel is designed to treat
+diagonal edges equally to horizontal and vertical edges, unlike the two examples above.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Isotropic Rosenfeld at 50% (rosenfeld_50_weights)
+    [  -1/24  -2/24  -1/24  ]
+    [  -2/24  36/24  -2/24  ]
+    [  -1/24  -2/24  -1/24  ]
+
+   (A=-1/24, B=-2/24, C=36/24)
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>At 0%: The kernel is identity (no sharpening).</p></li>
+<li><p>At 50%: The weights are <code class="docutils literal notranslate"><span class="pre">(-1/24,</span> <span class="pre">-2/24,</span> <span class="pre">36/24)</span></code> for corner, side, and center
+respectively – the default <code class="docutils literal notranslate"><span class="pre">rosenfeld_50_weights</span></code> alias.</p></li>
+<li><p>Coefficients satisfy the rule:  <code class="docutils literal notranslate"><span class="pre">4</span> <span class="pre">*</span> <span class="pre">corner_w</span> <span class="pre">+</span> <span class="pre">4</span> <span class="pre">*</span> <span class="pre">side_w</span> <span class="pre">+</span> <span class="pre">center_w</span> <span class="pre">=</span> <span class="pre">1</span></code>.</p></li>
+</ul>
+<p>The required halo is 1 pixel in each direction.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">Sharpen50</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">decltype</span><span class="p">(</span>
+<span class="w">    </span><span class="n">Function</span><span class="o">&lt;</span><span class="n">function</span><span class="o">::</span><span class="n">sharpen</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="n">Sharpen</span><span class="o">&lt;</span><span class="n">sharpen_weights</span><span class="o">::</span><span class="n">rosenfeld_generalized_weights</span><span class="o">&lt;</span><span class="mi">50</span><span class="o">&gt;&gt;</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="n">TileSize</span><span class="o">&lt;</span><span class="mi">48</span><span class="p">,</span><span class="w"> </span><span class="mi">48</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="n">Block</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="n">SM</span><span class="o">&lt;</span><span class="mi">900</span><span class="o">&gt;</span><span class="p">());</span>
+
+<span class="c1">// Custom Rosenfeld strength (e.g. 30%)</span>
+<span class="k">using</span><span class="w"> </span><span class="n">Sharpen30</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">decltype</span><span class="p">(</span>
+<span class="w">    </span><span class="n">Function</span><span class="o">&lt;</span><span class="n">function</span><span class="o">::</span><span class="n">sharpen</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="n">Sharpen</span><span class="o">&lt;</span><span class="n">sharpen_weights</span><span class="o">::</span><span class="n">rosenfeld_generalized_weights</span><span class="o">&lt;</span><span class="mi">30</span><span class="o">&gt;&gt;</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="n">TileSize</span><span class="o">&lt;</span><span class="mi">48</span><span class="p">,</span><span class="w"> </span><span class="mi">48</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="n">Block</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="n">SM</span><span class="o">&lt;</span><span class="mi">900</span><span class="o">&gt;</span><span class="p">());</span>
+</pre></div>
+</div>
+<p>Other presets in <code class="docutils literal notranslate"><span class="pre">sharpen_weights</span></code> include <code class="docutils literal notranslate"><span class="pre">identity_weights</span></code> (no-op) and
+<code class="docutils literal notranslate"><span class="pre">binomial_3x3_weights</span></code> (low-pass binomial/Gaussian kernel).</p>
+</section>
+<section id="resize">
+<span id="resize-operator"></span><h2>Resize<a class="headerlink" href="#resize" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">function::resize</span></code>. <code class="docutils literal notranslate"><span class="pre">Function&lt;function::resize&gt;()</span></code> with <code class="docutils literal notranslate"><span class="pre">Resize&lt;J,</span> <span class="pre">K,</span> <span class="pre">Method&gt;</span></code> performs a resize of
+<code class="docutils literal notranslate"><span class="pre">J</span></code> input samples to <code class="docutils literal notranslate"><span class="pre">K</span></code> output samples along each axis (coprime <code class="docutils literal notranslate"><span class="pre">J</span></code> and <code class="docutils literal notranslate"><span class="pre">K</span></code>).
+<code class="docutils literal notranslate"><span class="pre">Method</span></code> is an <code class="docutils literal notranslate"><span class="pre">interpolation_method</span></code>:</p>
+<ul class="simple">
+<li><p><strong>Nearest neighbor</strong> <code class="docutils literal notranslate"><span class="pre">nearest</span></code>: Selects the nearest input sample; no blurring but blocky or
+pixellated results when going larger, has aliasing artifacts when going smaller.  No halo required.</p></li>
+<li><p><strong>Bilinear interpolation</strong> <code class="docutils literal notranslate"><span class="pre">bilinear</span></code>: Linear interpolation on both axes. Smooth linear blend of neighboring
+samples. Best used for integer scaling factors.</p></li>
+<li><p><strong>Mitchell-Netravali cubic kernel</strong> <code class="docutils literal notranslate"><span class="pre">bicubic</span></code>: Catmull-Rom (B=0, C=0.5). Smoother than
+bilinear; loses detail near Nyquist but adds some sharpening to make up for it.</p></li>
+<li><p><strong>Lanczos-3</strong> <code class="docutils literal notranslate"><span class="pre">lanczos3</span></code>: Windowed sinc function (<code class="docutils literal notranslate"><span class="pre">sinc(x)*sinc(x/3)</span></code>). Preserves high frequency details
+the best of these methods. Requires a large halo especially when downscaling.</p></li>
+</ul>
+<p>Resize typically needs a non-zero local halo that depends on the interpolation kernel, and it changes
+output tile geometry relative to the input. Refer to resize-related storage traits (for example
+<code class="docutils literal notranslate"><span class="pre">output_storage_of_t</span></code> and <code class="docutils literal notranslate"><span class="pre">temp_storage_of_t</span></code>) and size the grid from the output dimensions.
+See <a class="reference internal" href="traits.html#traits-storage"><span class="std std-ref">Shared-memory storage traits</span></a> and <code class="docutils literal notranslate"><span class="pre">04_resize/resize_example.cu</span></code>.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">Resize2x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">decltype</span><span class="p">(</span>
+<span class="w">    </span><span class="n">Function</span><span class="o">&lt;</span><span class="n">function</span><span class="o">::</span><span class="n">resize</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="n">Resize</span><span class="o">&lt;</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">interpolation_method</span><span class="o">::</span><span class="n">bilinear</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="n">TileSize</span><span class="o">&lt;</span><span class="mi">48</span><span class="p">,</span><span class="w"> </span><span class="mi">48</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="n">Block</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="n">SM</span><span class="o">&lt;</span><span class="mi">900</span><span class="o">&gt;</span><span class="p">());</span>
+</pre></div>
+</div>
+<p>See also <code class="docutils literal notranslate"><span class="pre">04_resize/fused_resize.cu</span></code> for resize fused with box blur and color convert.</p>
+</section>
+<section id="see-also">
+<h2>See also<a class="headerlink" href="#see-also" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="processing_steps.html#processing-steps-label"><span class="std std-ref">Processing overview</span></a></p></li>
+<li><p><a class="reference internal" href="processing_steps_io.html#processing-steps-io"><span class="std std-ref">I/O steps</span></a></p></li>
+<li><p><a class="reference internal" href="processing_steps_pointwise.html#processing-steps-pointwise"><span class="std std-ref">Pointwise processing steps</span></a></p></li>
+<li><p><a class="reference internal" href="operators.html#halo-operators"><span class="std std-ref">Halo operators</span></a> and <a class="reference internal" href="traits.html#traits-halos"><span class="std std-ref">Halos and step order</span></a></p></li>
+</ul>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="processing_steps_pointwise.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Pointwise processing steps</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="traits.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Traits</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+
+
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#box-blur">Box blur</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gaussian-blur">Gaussian blur</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#median-filter">Median filter</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sharpen">Sharpen</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resize">Resize</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#see-also">See also</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+<a class="footer-brand logo" href="https://www.nvidia.com">
+  <img src="../_static/nvidia-logo-horiz-rgb-1c-blk-for-screen.svg" class="logo__image only-light" alt="NVIDIA"/>
+  <img src="../_static/nvidia-logo-horiz-rgb-1c-wht-for-screen.svg" class="logo__image only-dark" alt="NVIDIA"/>
+</a></div>
+      
+        <div class="footer-item">
+
+<div class="footer-links">
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/about-nvidia/privacy-policy/">Privacy Policy</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/about-nvidia/privacy-center/">Your Privacy Choices</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/about-nvidia/terms-of-service/">Terms of Service</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/about-nvidia/accessibility/">Accessibility</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/about-nvidia/company-policies/">Corporate Policies</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/product-security/">Product Security</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/contact/">Contact</a>
+  
+  
+  
+</div>
+</div>
+      
+        <div class="footer-item">
+
+
+
+
+  <p class="copyright">
+    
+      Copyright © 2025-2026, NVIDIA Corporation &amp; Affiliates. All rights reserved.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+  </body>
+</html>

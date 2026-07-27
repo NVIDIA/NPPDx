@@ -1,0 +1,985 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Image Processing Using NPPDx &#8212; NPPDx</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/nvidia-sphinx-theme.css?v=933278ad" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+
+
+
+    <script src="../_static/documentation_options.js?v=2caa9db7"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'get_started/introduction';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.20.0';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://nvidia.github.io/NPPDx/_static/switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '0.1.0';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner =
+            false;
+        </script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+
+    <link rel="icon" href="../_static/nvidia.ico"/>
+
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Achieving High Performance" href="performance.html" />
+    <link rel="prev" title="Installation Guide" href="installation.html" />
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.1.0" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+
+
+  </head>
+
+  <body data-default-mode="">
+
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/nvidia-logo-horiz-rgb-blk-for-screen.svg" class="logo__image only-light" alt="NPPDx - Home"/>
+    <img src="../_static/nvidia-logo-horiz-rgb-wht-for-screen.svg" class="logo__image only-dark pst-js-only" alt="NPPDx - Home"/>
+  
+  
+    <p class="title logo__title">NPPDx</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+
+
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/nvidia-logo-horiz-rgb-blk-for-screen.svg" class="logo__image only-light" alt="NPPDx - Home"/>
+    <img src="../_static/nvidia-logo-horiz-rgb-wht-for-screen.svg" class="logo__image only-dark pst-js-only" alt="NPPDx - Home"/>
+  
+  
+    <p class="title logo__title">NPPDx</p>
+  
+</a>
+
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+
+
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Table of Contents">
+  <p class="bd-links__title" role="heading" aria-level="1">Table of Contents</p>
+  <div class="bd-toc-item navbar-nav"><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Home</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="requirement.html">Requirements and Functionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Using NPPDx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performance.html">Achieving High Performance</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../api/operators.html">Operators</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api/processing_steps.html">Processing overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/processing_steps_io.html">I/O steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/processing_steps_pointwise.html">Pointwise processing steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/processing_steps_area.html">Area processing steps</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/traits.html">Traits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/methods.html">Execution Methods</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples List</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://github.com/NVIDIA/NPPDx">GitHub Repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">MathDx</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://developer.nvidia.com/cublasdx-downloads">cuBLASDx</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://developer.nvidia.com/cufftdx-downloads">cuFFTDx</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://developer.nvidia.com/cusolverdx-downloads">cuSolverDx</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://developer.nvidia.com/curanddx-downloads">cuRANDDx</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://developer.nvidia.com/nvcompdx-downloads">nvCOMPDx</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Image Processing Using NPPDx</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="image-processing-using-nppdx">
+<span id="intro"></span><h1>Image Processing Using NPPDx<a class="headerlink" href="#image-processing-using-nppdx" title="Link to this heading">#</a></h1>
+<p>This introduction walks through a minimal NPPDx program: compose the ingest and exgest
+operators, fuse them in a CUDA kernel that converts a packed RGB24 image to a floating-point
+internal representation, and write the same format back out. The walkthrough is adapted from the
+<code class="docutils literal notranslate"><span class="pre">00_introduction/introduction_example.cu</span></code> sample shipped with NPPDx.</p>
+<p>NPPDx follows the same <a class="reference internal" href="../api/operators.html#operators-label"><span class="std std-ref">operator programming model</span></a> as other MathDx device libraries. A
+compile-time description of the work to perform is built by adding operators together with
+<code class="docutils literal notranslate"><span class="pre">+</span></code>. The library validates the description at compile time and generates device code tailored
+to the specified formats, tile size, block layout, and target architecture.</p>
+<section id="terminology">
+<span id="id1"></span><h2>Terminology<a class="headerlink" href="#terminology" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Processing step</strong> (image-processing step): ingest, exgest, pointwise, area, or resize
+work in a fused kernel. Compose each step using MathDx <a class="reference internal" href="../api/operators.html#operators-label"><span class="std std-ref">Operators</span></a>
+joined with <code class="docutils literal notranslate"><span class="pre">+</span></code>. Type aliases such as <code class="docutils literal notranslate"><span class="pre">IngestOperation</span></code> / <code class="docutils literal notranslate"><span class="pre">ExgestOperation</span></code> name
+those composed expressions.</p></li>
+<li><p><strong>Fuse</strong>: combine processing steps in one kernel, ideally using data on-chip and
+minimizing global-memory traffic.</p></li>
+<li><p><strong>Fused kernel</strong>: a fused sequence of processing steps, run in one <code class="docutils literal notranslate"><span class="pre">__global__</span></code>
+function via <code class="docutils literal notranslate"><span class="pre">execute()</span></code> calls in order.</p></li>
+<li><p><strong>Local halo</strong>: neighborhood support required by one step (for example a 5x5 median
+needs 2 pixels). Available as a trait on each step.</p></li>
+<li><p><strong>Cumulative halo</strong>: minimum additional data required at ingest such that
+all subsequent processing steps can be run by the fused kernel without boundary condition
+considerations.</p></li>
+<li><p><strong>Memory halo</strong>: optimized halo to improve shared-memory caching and access speed. Cannot be smaller than the ingest Cumulative halo.</p></li>
+<li><p><strong>Tile</strong>: rectangular on-chip image region a CUDA block works on, set with
+<code class="docutils literal notranslate"><span class="pre">TileSize&lt;W,</span> <span class="pre">H&gt;</span></code>. That size is the <em>nominal</em> tile; with halo it becomes the
+<em>extended</em> tile (nominal plus cumulative halo at ingest). Held in registers or in
+<code class="docutils literal notranslate"><span class="pre">TileStorage</span></code> shared memory. As neighborhood steps run, the valid interior shrinks
+by each step’s local halo. A step may use a tile as:</p>
+<ul>
+<li><p><strong>input</strong>: often with halo</p></li>
+<li><p><strong>output</strong>: with or without halo; may be a different shape for resize</p></li>
+<li><p><strong>temporary</strong>: scratch storage (for example resize)</p></li>
+</ul>
+</li>
+<li><p><strong>Packing format</strong>: arrangement of image samples in global memory for ingest and
+exgest. Selected with <code class="docutils literal notranslate"><span class="pre">InputFormat</span></code> / <code class="docutils literal notranslate"><span class="pre">OutputFormat</span></code> and values of
+<code class="docutils literal notranslate"><span class="pre">packing_format</span></code> (see <a class="reference internal" href="requirement.html#supported-packing-formats"><span class="std std-ref">Supported memory packing formats</span></a>).</p></li>
+<li><p><strong>Function</strong>: MathDx operator <code class="docutils literal notranslate"><span class="pre">Function&lt;function::Tag&gt;</span></code> that selects the work a
+processing step performs (for example <code class="docutils literal notranslate"><span class="pre">function::box_blur</span></code>). Pair it with the
+matching parameter operator (see <a class="reference internal" href="../api/operators.html#function-tags"><span class="std std-ref">Function tag operator (processing step)</span></a>).</p></li>
+</ul>
+</section>
+<section id="register-only-api-vs-shared-memory-api">
+<span id="register-only-api"></span><h2>Register-only API vs Shared-memory API<a class="headerlink" href="#register-only-api-vs-shared-memory-api" title="Link to this heading">#</a></h2>
+<p>The on-chip storage strategy depends upon the fused kernel’s steps and whether they use halos.</p>
+<ul>
+<li><p><strong>Register-only API</strong>: every step is pointwise and needs no neighborhood support. Ingest
+loads into registers; compute and exgest stay there. This is the faster processing path when applicable.</p>
+<figure class="align-center" id="id3">
+<span id="fig-register-only-pointwise"></span><a class="reference internal image-reference" href="../_images/nppdx-register-only-pointwise.png"><img alt="Pointwise fused kernel from ingest format through three pointwise steps to exgest format" src="../_images/nppdx-register-only-pointwise.png" style="width: 80%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Figure 2 </span><span class="caption-text">Pointwise fused kernel: ingest format, three pointwise steps, and exgest format.
+<em>With no neighborhood requirements, this sequence can use either API, but register-only is faster.</em></span><a class="headerlink" href="#id3" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</li>
+<li><p><strong>Shared-memory API</strong>: if any of the steps need a non-zero halo (area filters, resize).
+Ingest loads the extended tile into shared memory; all steps in the fused kernel – including pointwise ones –
+run using shared-memory tiles.</p>
+<figure class="align-center" id="id4">
+<span id="fig-shared-memory-fusion"></span><a class="reference internal image-reference" href="../_images/nppdx-about-fusion.png"><img alt="Shared-memory fused kernel with {3, 3, 3, 3} halo and mixture of area and pointwise steps" src="../_images/nppdx-about-fusion.png" style="width: 100%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Figure 3 </span><span class="caption-text">Shared-memory fused kernel: ingest format with {3, 3, 3, 3} cumulative halo, 2 area steps, 1 pointwise step, and exgest format.</span><a class="headerlink" href="#id4" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">execute()</span></code> signatures for both APIs are listed under <a class="reference internal" href="../api/methods.html#execution-methods-label"><span class="std std-ref">Execution Methods (Device API)</span></a>. The
+walkthrough below starts with the Register-only API (<code class="docutils literal notranslate"><span class="pre">introduction_example.cu</span></code>); shared-memory
+setup follows in <a class="reference internal" href="#shared-memory-tiles"><span class="std std-ref">Shared-memory tiles</span></a>.</p>
+</section>
+<section id="nppdx-execution-model-ingest-compute-exgest">
+<h2>NPPDx Execution model: ingest, compute, exgest<a class="headerlink" href="#nppdx-execution-model-ingest-compute-exgest" title="Link to this heading">#</a></h2>
+<p>NPPDx provides processing steps that appear in user kernels as device function calls. Which
+steps to call and in which order is up to the kernel author. End-to-end image processing
+is typically structured as:</p>
+<ol class="arabic simple">
+<li><p><strong>Ingest</strong>: load the required data (plus any required halo) arranged in global memory
+according to its associated packing format and convert to floating point.</p></li>
+<li><p><strong>Compute</strong>: apply one or more steps in local memory. Pointwise steps
+(for example color conversion and gamma) can run on either registers or a
+shared-memory tile. Area steps (blur, median, sharpen, and resize) require a
+shared-memory tile whenever the step’s halo is non-zero – when neighborhood support
+extends beyond the nominal tile itself. In a fused kernel, any step that needs a halo
+forces the whole algorithm to use the Shared-memory API – including pointwise steps in that
+fused kernel.</p></li>
+<li><p><strong>Exgest</strong>: convert from the intermediate floating-point representation and write output
+to global memory according to its associated packing format.</p></li>
+</ol>
+<p>In a typical fused kernel, format conversion happens twice: once on the way in, once on
+the way out, often with processing in the middle. More complex fused kernels may require data from multiple sources and exgest in several
+packing formats and sizes. This is very efficient since the data is already loaded.</p>
+</section>
+<section id="specifying-ingest-and-exgest">
+<h2>Specifying ingest and exgest<a class="headerlink" href="#specifying-ingest-and-exgest" title="Link to this heading">#</a></h2>
+<p>The first step is to specify the ingest and exgest steps. To that end, NPPDx provides the
+<a class="reference internal" href="../api/operators.html#io-operators"><span class="std std-ref">InputOutput</span></a>, <a class="reference internal" href="../api/operators.html#io-operators"><span class="std std-ref">InputFormat</span></a> /
+<a class="reference internal" href="../api/operators.html#io-operators"><span class="std std-ref">OutputFormat</span></a>, <a class="reference internal" href="../api/operators.html#architecture-tile-operators"><span class="std std-ref">TileSize</span></a>,
+<a class="reference internal" href="../api/operators.html#execution-operators"><span class="std std-ref">Block</span></a>, and <a class="reference internal" href="../api/operators.html#architecture-tile-operators"><span class="std std-ref">SM</span></a> operators, which
+can be combined with <code class="docutils literal notranslate"><span class="pre">+</span></code>:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;nppdx.hpp&gt;</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="kt">int</span><span class="w"> </span><span class="n">SM</span><span class="o">&gt;</span>
+<span class="k">using</span><span class="w"> </span><span class="n">IngestOperation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">decltype</span><span class="p">(</span>
+<span class="w">    </span><span class="n">nppdx</span><span class="o">::</span><span class="n">InputOutput</span><span class="o">&lt;</span><span class="n">nppdx</span><span class="o">::</span><span class="n">input_output_direction</span><span class="o">::</span><span class="n">ingest</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="n">nppdx</span><span class="o">::</span><span class="n">InputFormat</span><span class="o">&lt;</span><span class="n">nppdx</span><span class="o">::</span><span class="n">packing_format</span><span class="o">::</span><span class="n">rgb24</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="n">nppdx</span><span class="o">::</span><span class="n">TileSize</span><span class="o">&lt;</span><span class="mi">48</span><span class="p">,</span><span class="w"> </span><span class="mi">48</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="n">nppdx</span><span class="o">::</span><span class="n">Block</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="n">nppdx</span><span class="o">::</span><span class="n">SM</span><span class="o">&lt;</span><span class="n">SM</span><span class="o">&gt;</span><span class="p">());</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="kt">int</span><span class="w"> </span><span class="n">SM</span><span class="o">&gt;</span>
+<span class="k">using</span><span class="w"> </span><span class="n">ExgestOperation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">decltype</span><span class="p">(</span>
+<span class="w">    </span><span class="n">nppdx</span><span class="o">::</span><span class="n">InputOutput</span><span class="o">&lt;</span><span class="n">nppdx</span><span class="o">::</span><span class="n">input_output_direction</span><span class="o">::</span><span class="n">exgest</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="n">nppdx</span><span class="o">::</span><span class="n">OutputFormat</span><span class="o">&lt;</span><span class="n">nppdx</span><span class="o">::</span><span class="n">packing_format</span><span class="o">::</span><span class="n">rgb24</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="n">nppdx</span><span class="o">::</span><span class="n">TileSize</span><span class="o">&lt;</span><span class="mi">48</span><span class="p">,</span><span class="w"> </span><span class="mi">48</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="n">nppdx</span><span class="o">::</span><span class="n">Block</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="n">nppdx</span><span class="o">::</span><span class="n">SM</span><span class="o">&lt;</span><span class="n">SM</span><span class="o">&gt;</span><span class="p">());</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">IngestOperation</span></code> specifies the direction (<code class="docutils literal notranslate"><span class="pre">ingest</span></code>), input format through
+<code class="docutils literal notranslate"><span class="pre">InputFormat</span></code> (<code class="docutils literal notranslate"><span class="pre">rgb24</span></code>), tile size, execution operator, and architecture.
+<code class="docutils literal notranslate"><span class="pre">ExgestOperation</span></code> mirrors it with <code class="docutils literal notranslate"><span class="pre">exgest</span></code> and <code class="docutils literal notranslate"><span class="pre">OutputFormat</span></code>. <code class="docutils literal notranslate"><span class="pre">IngestOperation</span></code> and <code class="docutils literal notranslate"><span class="pre">ExgestOperation</span></code> in the same fused
+kernel must agree on tile size, execution operator, and architecture.</p>
+<p>Each <code class="docutils literal notranslate"><span class="pre">execute()</span></code> call is backed by a composed expression such as <code class="docutils literal notranslate"><span class="pre">IngestOperation</span></code> or a
+<a class="reference internal" href="../api/operators.html#function-tags"><span class="std std-ref">Function</span></a> step in the fused kernel.</p>
+</section>
+<section id="a-minimal-kernel">
+<h2>A minimal kernel<a class="headerlink" href="#a-minimal-kernel" title="Link to this heading">#</a></h2>
+<p>The Register-only API keeps the intermediate tile in registers.
+Shared memory is faster than Global memory, and registers are faster still.  This is the fastest
+and simplest way to connect ingest and exgest inside a user kernel:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">IngestOp</span><span class="p">,</span><span class="w"> </span><span class="k">typename</span><span class="w"> </span><span class="nc">ExgestOp</span><span class="o">&gt;</span>
+<span class="n">__global__</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">image_processing_kernel</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="o">*</span><span class="w"> </span><span class="n">global_input</span><span class="p">,</span>
+<span class="w">                                        </span><span class="kt">uint8_t</span><span class="o">*</span><span class="w"> </span><span class="n">global_output</span><span class="p">,</span>
+<span class="w">                                        </span><span class="kt">int</span><span class="w"> </span><span class="n">width</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">height</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">using</span><span class="w"> </span><span class="n">processing_t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nppdx</span><span class="o">::</span><span class="n">processing_type_of_t</span><span class="o">&lt;</span><span class="n">IngestOp</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="w">    </span><span class="k">constexpr</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">elements_per_thread</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nppdx</span><span class="o">::</span><span class="n">elements_per_thread_of_v</span><span class="o">&lt;</span><span class="n">IngestOp</span><span class="o">&gt;</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">processing_t</span><span class="w"> </span><span class="n">intermediate_data</span><span class="p">[</span><span class="n">elements_per_thread</span><span class="p">];</span>
+
+<span class="w">    </span><span class="n">IngestOp</span><span class="p">().</span><span class="n">execute</span><span class="p">(</span><span class="n">global_input</span><span class="p">,</span><span class="w"> </span><span class="n">intermediate_data</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Additional pointwise work can be applied here on intermediate_data.</span>
+
+<span class="w">    </span><span class="n">ExgestOp</span><span class="p">().</span><span class="n">execute</span><span class="p">(</span><span class="n">intermediate_data</span><span class="p">,</span><span class="w"> </span><span class="n">global_output</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><span class="cpp-expr sig sig-inline cpp"><span class="n">processing_type_of_t</span></span> is the floating-point type used during processing.
+<span class="cpp-expr sig sig-inline cpp"><span class="n">elements_per_thread_of_v</span></span> is the number of intermediate values each thread holds – fixed
+at compile time so register usage is known before launch.</p>
+</section>
+<section id="querying-compile-time-traits">
+<h2>Querying compile-time traits<a class="headerlink" href="#querying-compile-time-traits" title="Link to this heading">#</a></h2>
+<p>Before launching the kernel, query traits from <code class="docutils literal notranslate"><span class="pre">IngestOperation</span></code>. Examples below show several of these values:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">constexpr</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">tile_size</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="n">IngestOperation</span><span class="o">&lt;</span><span class="mi">800</span><span class="o">&gt;::</span><span class="n">suggested_tile_size</span><span class="p">;</span>
+<span class="k">constexpr</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">elements_per_thread</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">IngestOperation</span><span class="o">&lt;</span><span class="mi">800</span><span class="o">&gt;::</span><span class="n">elements_per_thread</span><span class="p">;</span>
+<span class="k">constexpr</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">block_dim</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="n">IngestOperation</span><span class="o">&lt;</span><span class="mi">800</span><span class="o">&gt;::</span><span class="n">block_dim</span><span class="p">;</span>
+<span class="k">constexpr</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">format</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="n">nppdx</span><span class="o">::</span><span class="n">packing_format_of_v</span><span class="o">&lt;</span><span class="n">IngestOperation</span><span class="o">&lt;</span><span class="mi">800</span><span class="o">&gt;&gt;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Op::shared_memory_size</span></code> is always the dynamic shared-memory requirement for the
+Shared-memory API for that step (from <code class="docutils literal notranslate"><span class="pre">inputs</span></code>, <code class="docutils literal notranslate"><span class="pre">outputs</span></code>, and <code class="docutils literal notranslate"><span class="pre">temp</span></code>). Composition
+does not record whether the kernel will use registers or shared memory, so this value is
+not “zero for Register-only.” Register-only launches pass <code class="docutils literal notranslate"><span class="pre">0</span></code> (or omit the third
+<code class="docutils literal notranslate"><span class="pre">&lt;&lt;&lt;...&gt;&gt;&gt;</span></code> argument). Shared-memory examples pass <code class="docutils literal notranslate"><span class="pre">Op::shared_memory_size</span></code> or
+<code class="docutils literal notranslate"><span class="pre">shared_memory::compute_total_tile_storage&lt;...&gt;()</span></code>.</p>
+</section>
+<section id="launching-the-kernel">
+<h2>Launching the kernel<a class="headerlink" href="#launching-the-kernel" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">IngestOperation</span></code> exposes launch traits as static members. Prefer <code class="docutils literal notranslate"><span class="pre">calculate_grid_dim</span></code> over
+manual grid arithmetic. The introduction example launches as:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="n">dim3</span><span class="w"> </span><span class="n">grid_dim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">IngestOperation</span><span class="o">::</span><span class="n">calculate_grid_dim</span><span class="p">(</span><span class="n">width</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="p">);</span>
+
+<span class="n">image_processing_kernel</span><span class="o">&lt;</span><span class="n">IngestOperation</span><span class="p">,</span><span class="w"> </span><span class="n">ExgestOperation</span><span class="o">&gt;</span>
+<span class="w">    </span><span class="o">&lt;&lt;&lt;</span><span class="n">grid_dim</span><span class="p">,</span><span class="w"> </span><span class="n">ingest_block_dim</span><span class="o">&gt;&gt;&gt;</span><span class="p">(</span><span class="n">d_input</span><span class="p">,</span><span class="w"> </span><span class="n">d_output</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Here <code class="docutils literal notranslate"><span class="pre">ingest_block_dim</span></code> is <code class="docutils literal notranslate"><span class="pre">IngestOperation::block_dim</span></code> from the trait query above. The
+Register-only launch omits dynamic shared memory (equivalent to <code class="docutils literal notranslate"><span class="pre">0</span></code>). Do not pass
+<code class="docutils literal notranslate"><span class="pre">IngestOperation::shared_memory_size</span></code> unless the kernel actually uses the Shared-memory API.</p>
+<p>The introduction example uses <code class="docutils literal notranslate"><span class="pre">common::run_example_with_sm</span></code> to instantiate the correct
+<code class="docutils literal notranslate"><span class="pre">SM</span></code> value for the current device.</p>
+</section>
+<section id="fusing-three-steps-ingest-color-convert-exgest">
+<h2>Fusing three steps: ingest, color_convert, exgest<a class="headerlink" href="#fusing-three-steps-ingest-color-convert-exgest" title="Link to this heading">#</a></h2>
+<p>The pattern below fuses a three-step image-processing series (<code class="docutils literal notranslate"><span class="pre">ingest</span></code>,
+<a class="reference internal" href="../api/processing_steps_pointwise.html#color-convert-step"><span class="std std-ref">color_convert</span></a>, <code class="docutils literal notranslate"><span class="pre">exgest</span></code>) in one
+kernel, with <code class="docutils literal notranslate"><span class="pre">yuv420p</span></code> output:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">Ingest</span><span class="p">,</span><span class="w"> </span><span class="k">typename</span><span class="w"> </span><span class="nc">Convert</span><span class="p">,</span><span class="w"> </span><span class="k">typename</span><span class="w"> </span><span class="nc">Exgest</span><span class="o">&gt;</span>
+<span class="n">__global__</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">convert_kernel</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="o">*</span><span class="w"> </span><span class="n">input</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="o">*</span><span class="w"> </span><span class="n">output</span><span class="p">,</span>
+<span class="w">                               </span><span class="kt">int</span><span class="w"> </span><span class="n">width</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">height</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">tile_data</span><span class="p">[</span><span class="n">Ingest</span><span class="o">::</span><span class="n">elements_per_thread</span><span class="p">];</span>
+
+<span class="w">    </span><span class="n">Ingest</span><span class="p">().</span><span class="n">execute</span><span class="p">(</span><span class="n">input</span><span class="p">,</span><span class="w"> </span><span class="n">tile_data</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Convert</span><span class="p">().</span><span class="n">execute</span><span class="p">(</span><span class="n">tile_data</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Exgest</span><span class="p">().</span><span class="n">execute</span><span class="p">(</span><span class="n">tile_data</span><span class="p">,</span><span class="w"> </span><span class="n">output</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="kt">int</span><span class="w"> </span><span class="n">SM</span><span class="o">&gt;</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">launch_rgb_to_yuv</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="o">*</span><span class="w"> </span><span class="n">input</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="o">*</span><span class="w"> </span><span class="n">output</span><span class="p">,</span>
+<span class="w">                       </span><span class="kt">int</span><span class="w"> </span><span class="n">width</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">height</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">using</span><span class="w"> </span><span class="n">Ingest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">decltype</span><span class="p">(</span><span class="n">nppdx</span><span class="o">::</span><span class="n">InputOutput</span><span class="o">&lt;</span><span class="n">nppdx</span><span class="o">::</span><span class="n">input_output_direction</span><span class="o">::</span><span class="n">ingest</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">                            </span><span class="n">nppdx</span><span class="o">::</span><span class="n">InputFormat</span><span class="o">&lt;</span><span class="n">nppdx</span><span class="o">::</span><span class="n">packing_format</span><span class="o">::</span><span class="n">rgb24</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">                            </span><span class="n">nppdx</span><span class="o">::</span><span class="n">TileSize</span><span class="o">&lt;</span><span class="mi">48</span><span class="p">,</span><span class="w"> </span><span class="mi">48</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">nppdx</span><span class="o">::</span><span class="n">SM</span><span class="o">&lt;</span><span class="n">SM</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">nppdx</span><span class="o">::</span><span class="n">Block</span><span class="p">());</span>
+
+<span class="w">    </span><span class="k">using</span><span class="w"> </span><span class="n">Convert</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">decltype</span><span class="p">(</span><span class="n">nppdx</span><span class="o">::</span><span class="n">Function</span><span class="o">&lt;</span><span class="n">nppdx</span><span class="o">::</span><span class="n">function</span><span class="o">::</span><span class="n">color_convert</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">                             </span><span class="n">nppdx</span><span class="o">::</span><span class="n">ColorConvert</span><span class="o">&lt;</span><span class="n">nppdx</span><span class="o">::</span><span class="n">color_space</span><span class="o">::</span><span class="n">rgb</span><span class="p">,</span>
+<span class="w">                                                 </span><span class="n">nppdx</span><span class="o">::</span><span class="n">color_space</span><span class="o">::</span><span class="n">yuv_bt601</span><span class="p">,</span>
+<span class="w">                                                 </span><span class="n">nppdx</span><span class="o">::</span><span class="n">bit_depth</span><span class="o">::</span><span class="n">bpp_8u</span><span class="p">,</span>
+<span class="w">                                                 </span><span class="n">nppdx</span><span class="o">::</span><span class="n">bit_depth</span><span class="o">::</span><span class="n">bpp_8u</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">                             </span><span class="n">nppdx</span><span class="o">::</span><span class="n">TileSize</span><span class="o">&lt;</span><span class="mi">48</span><span class="p">,</span><span class="w"> </span><span class="mi">48</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">nppdx</span><span class="o">::</span><span class="n">SM</span><span class="o">&lt;</span><span class="n">SM</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">nppdx</span><span class="o">::</span><span class="n">Block</span><span class="p">());</span>
+
+<span class="w">    </span><span class="k">using</span><span class="w"> </span><span class="n">Exgest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">decltype</span><span class="p">(</span><span class="n">nppdx</span><span class="o">::</span><span class="n">InputOutput</span><span class="o">&lt;</span><span class="n">nppdx</span><span class="o">::</span><span class="n">input_output_direction</span><span class="o">::</span><span class="n">exgest</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">                            </span><span class="n">nppdx</span><span class="o">::</span><span class="n">OutputFormat</span><span class="o">&lt;</span><span class="n">nppdx</span><span class="o">::</span><span class="n">packing_format</span><span class="o">::</span><span class="n">yuv420p</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">                            </span><span class="n">nppdx</span><span class="o">::</span><span class="n">TileSize</span><span class="o">&lt;</span><span class="mi">48</span><span class="p">,</span><span class="w"> </span><span class="mi">48</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">nppdx</span><span class="o">::</span><span class="n">SM</span><span class="o">&lt;</span><span class="n">SM</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">nppdx</span><span class="o">::</span><span class="n">Block</span><span class="p">());</span>
+
+<span class="w">    </span><span class="n">dim3</span><span class="w"> </span><span class="n">grid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Ingest</span><span class="o">::</span><span class="n">calculate_grid_dim</span><span class="p">(</span><span class="n">width</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="p">);</span>
+<span class="w">    </span><span class="n">convert_kernel</span><span class="o">&lt;</span><span class="n">Ingest</span><span class="p">,</span><span class="w"> </span><span class="n">Convert</span><span class="p">,</span><span class="w"> </span><span class="n">Exgest</span><span class="o">&gt;</span>
+<span class="w">        </span><span class="o">&lt;&lt;&lt;</span><span class="n">grid</span><span class="p">,</span><span class="w"> </span><span class="n">Ingest</span><span class="o">::</span><span class="n">block_dim</span><span class="o">&gt;&gt;&gt;</span><span class="p">(</span><span class="n">input</span><span class="p">,</span><span class="w"> </span><span class="n">output</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="shared-memory-tiles">
+<span id="id2"></span><h2>Shared-memory tiles<a class="headerlink" href="#shared-memory-tiles" title="Link to this heading">#</a></h2>
+<p>For neighborhood steps (box blur, resize, etc.), use a shared-memory tile instead
+of register arrays. <code class="docutils literal notranslate"><span class="pre">IngestOperation</span></code> (and each <code class="docutils literal notranslate"><span class="pre">Function&lt;...&gt;</span></code> step in a fused kernel)
+exposes the <code class="docutils literal notranslate"><span class="pre">TileStorage</span></code> types and shapes it needs through storage traits (see
+<a class="reference internal" href="../api/traits.html#traits-storage"><span class="std std-ref">Shared-memory storage traits</span></a>).</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">introduction_example_shared_memory.cu</span></code> example uses the same ingest and exgest composition
+as the Register-only API, but passes a typed shared-memory tile (<code class="docutils literal notranslate"><span class="pre">TileStorage</span></code>) to <code class="docutils literal notranslate"><span class="pre">execute()</span></code>
+instead of a per-thread array. On the host, query the input tile type from the ingest step and use
+that step’s shared-memory size for the kernel launch:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;nppdx/shared_memory.hpp&gt;</span>
+
+<span class="k">using</span><span class="w"> </span><span class="n">TileStorageType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nppdx</span><span class="o">::</span><span class="n">input_storage_of_t</span><span class="o">&lt;</span><span class="n">IngestOperation</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="k">constexpr</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">smem_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">IngestOperation</span><span class="o">::</span><span class="n">shared_memory_size</span><span class="p">;</span>
+<span class="c1">// equivalent: shared_memory::compute_total_tile_storage&lt;TileStorageType&gt;();</span>
+
+<span class="k">const</span><span class="w"> </span><span class="n">dim3</span><span class="w"> </span><span class="n">grid_dim</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">IngestOperation</span><span class="o">::</span><span class="n">calculate_grid_dim</span><span class="p">(</span><span class="n">width</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="p">);</span>
+<span class="k">const</span><span class="w"> </span><span class="n">dim3</span><span class="w"> </span><span class="n">block_dim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">IngestOperation</span><span class="o">::</span><span class="n">block_dim</span><span class="p">;</span>
+
+<span class="n">image_processing_kernel_with_channels</span><span class="o">&lt;</span><span class="n">IngestOperation</span><span class="p">,</span><span class="w"> </span><span class="n">ExgestOperation</span><span class="o">&gt;</span>
+<span class="w">    </span><span class="o">&lt;&lt;&lt;</span><span class="n">grid_dim</span><span class="p">,</span><span class="w"> </span><span class="n">block_dim</span><span class="p">,</span><span class="w"> </span><span class="n">smem_size</span><span class="o">&gt;&gt;&gt;</span><span class="p">(</span><span class="n">d_input</span><span class="p">,</span><span class="w"> </span><span class="n">d_output</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>In the kernel, bind the dynamic shared-memory allocation to that storage type and pass the
+resulting <code class="docutils literal notranslate"><span class="pre">TileStorage</span></code> object to <code class="docutils literal notranslate"><span class="pre">execute()</span></code>:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">IngestOp</span><span class="p">,</span><span class="w"> </span><span class="k">typename</span><span class="w"> </span><span class="nc">ExgestOp</span><span class="o">&gt;</span>
+<span class="n">__global__</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">image_processing_kernel_with_channels</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="o">*</span><span class="w"> </span><span class="n">global_input</span><span class="p">,</span>
+<span class="w">                                                      </span><span class="kt">uint8_t</span><span class="o">*</span><span class="w"> </span><span class="n">global_output</span><span class="p">,</span>
+<span class="w">                                                      </span><span class="kt">int</span><span class="w"> </span><span class="n">width</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">height</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">extern</span><span class="w"> </span><span class="n">__shared__</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">smem</span><span class="p">[];</span>
+
+<span class="w">    </span><span class="k">using</span><span class="w"> </span><span class="n">TileStorageType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nppdx</span><span class="o">::</span><span class="n">input_storage_of_t</span><span class="o">&lt;</span><span class="n">IngestOp</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">channels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TileStorageType</span><span class="o">::</span><span class="n">from_memory</span><span class="p">(</span><span class="n">smem</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">IngestOp</span><span class="p">().</span><span class="n">execute</span><span class="p">(</span><span class="n">global_input</span><span class="p">,</span><span class="w"> </span><span class="n">channels</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="p">);</span>
+<span class="w">    </span><span class="n">ExgestOp</span><span class="p">().</span><span class="n">execute</span><span class="p">(</span><span class="n">channels</span><span class="p">,</span><span class="w"> </span><span class="n">global_output</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Shared-memory ingest loads the extended tile required by the fused sequence of
+steps. Boundary padding is applied during ingest so downstream steps do not implement
+or even be aware of boundary conditions.</p>
+</section>
+<section id="fused-kernels-with-halos">
+<h2>Fused kernels (with halos)<a class="headerlink" href="#fused-kernels-with-halos" title="Link to this heading">#</a></h2>
+<p>For a fused kernel such as ingest <span class="math notranslate nohighlight">\(\rightarrow\)</span> <a class="reference internal" href="../api/processing_steps_area.html#box-blur-operator"><span class="std std-ref">box blur</span></a> <span class="math notranslate nohighlight">\(\rightarrow\)</span> exgest, compose the
+operators for each step (with <code class="docutils literal notranslate"><span class="pre">TileSize</span></code>, <code class="docutils literal notranslate"><span class="pre">SM</span></code>, <code class="docutils literal notranslate"><span class="pre">Block</span></code>, and
+<a class="reference internal" href="../api/operators.html#halo-operators"><span class="std std-ref">halo operators</span></a> as needed), then fuse the steps into one kernel. Query
+storage types from traits and call <code class="docutils literal notranslate"><span class="pre">execute()</span></code> in process order – no separate wrapper is required.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">Ingest</span><span class="p">,</span><span class="w"> </span><span class="k">typename</span><span class="w"> </span><span class="nc">BoxBlur</span><span class="p">,</span><span class="w"> </span><span class="k">typename</span><span class="w"> </span><span class="nc">Exgest</span><span class="p">,</span>
+<span class="w">         </span><span class="k">typename</span><span class="w"> </span><span class="nc">InputTileStorage</span><span class="p">,</span><span class="w"> </span><span class="k">typename</span><span class="w"> </span><span class="nc">BlurTileStorage</span><span class="o">&gt;</span>
+<span class="n">__global__</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">box_blur_kernel</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="o">*</span><span class="w"> </span><span class="n">input</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="o">*</span><span class="w"> </span><span class="n">output</span><span class="p">,</span>
+<span class="w">                                </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">width</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">height</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">extern</span><span class="w"> </span><span class="n">__shared__</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">smem</span><span class="p">[];</span>
+
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">tiles</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nppdx</span><span class="o">::</span><span class="n">shared_memory</span><span class="o">::</span><span class="n">slice_into_tile_storage</span><span class="o">&lt;</span><span class="n">InputTileStorage</span><span class="p">,</span><span class="w"> </span><span class="n">BlurTileStorage</span><span class="o">&gt;</span><span class="p">(</span><span class="n">smem</span><span class="p">);</span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">input_channels</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">get</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">&gt;</span><span class="p">(</span><span class="n">tiles</span><span class="p">);</span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">output_channels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">get</span><span class="o">&lt;</span><span class="mi">1</span><span class="o">&gt;</span><span class="p">(</span><span class="n">tiles</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">Ingest</span><span class="p">().</span><span class="n">execute</span><span class="p">(</span><span class="n">input</span><span class="p">,</span><span class="w"> </span><span class="n">input_channels</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="p">);</span>
+<span class="w">    </span><span class="n">BoxBlur</span><span class="p">().</span><span class="n">execute</span><span class="p">(</span><span class="n">input_channels</span><span class="p">,</span><span class="w"> </span><span class="n">output_channels</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Exgest</span><span class="p">().</span><span class="n">execute</span><span class="p">(</span><span class="n">output_channels</span><span class="p">,</span><span class="w"> </span><span class="n">output</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Host setup:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">InputTileStorage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nppdx</span><span class="o">::</span><span class="n">input_storage_of_t</span><span class="o">&lt;</span><span class="n">Ingest</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="k">using</span><span class="w"> </span><span class="n">BlurTileStorage</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">nppdx</span><span class="o">::</span><span class="n">output_storage_of_t</span><span class="o">&lt;</span><span class="n">BoxBlur</span><span class="o">&gt;</span><span class="p">;</span>
+
+<span class="k">constexpr</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">smem_size</span><span class="w"> </span><span class="o">=</span>
+<span class="w">    </span><span class="n">nppdx</span><span class="o">::</span><span class="n">shared_memory</span><span class="o">::</span><span class="n">compute_total_tile_storage</span><span class="o">&lt;</span><span class="n">InputTileStorage</span><span class="p">,</span><span class="w"> </span><span class="n">BlurTileStorage</span><span class="o">&gt;</span><span class="p">();</span>
+
+<span class="n">box_blur_kernel</span><span class="o">&lt;</span><span class="n">Ingest</span><span class="p">,</span><span class="w"> </span><span class="n">BoxBlur</span><span class="p">,</span><span class="w"> </span><span class="n">Exgest</span><span class="p">,</span><span class="w"> </span><span class="n">InputTileStorage</span><span class="p">,</span><span class="w"> </span><span class="n">BlurTileStorage</span><span class="o">&gt;</span>
+<span class="w">    </span><span class="o">&lt;&lt;&lt;</span><span class="n">grid</span><span class="p">,</span><span class="w"> </span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">smem_size</span><span class="o">&gt;&gt;&gt;</span><span class="p">(</span><span class="n">d_input</span><span class="p">,</span><span class="w"> </span><span class="n">d_output</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Steps that need three tiles (for example resize) require temporary storage –
+use <code class="docutils literal notranslate"><span class="pre">temp_storage_of_t&lt;Resize&gt;</span></code> alongside <code class="docutils literal notranslate"><span class="pre">input_storage_of_t</span></code> and <code class="docutils literal notranslate"><span class="pre">output_storage_of_t</span></code>.
+See <code class="docutils literal notranslate"><span class="pre">03_area_operation/box_filter.cu</span></code> and <code class="docutils literal notranslate"><span class="pre">04_resize/fused_resize.cu</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Kernel Processing order and traits. <code class="docutils literal notranslate"><span class="pre">execute()</span></code> call order depends on the traits composed on each
+fused kernel step – halos, tile bounds, shared-memory layout, and validity checks. Clipping to the
+output format range happens at exgest; intermediate steps use unclipped
+floating-point tiles. Results for different orderings may be close after final clipping but
+are not interchangable without testing.</p>
+</div>
+<p>See the numbered examples under <code class="docutils literal notranslate"><span class="pre">example/nppdx/</span></code> and the <a class="reference internal" href="../examples/index.html#examples"><span class="std std-ref">Examples</span></a> section.</p>
+</section>
+<section id="miscellaneous-considerations">
+<h2>Miscellaneous considerations<a class="headerlink" href="#miscellaneous-considerations" title="Link to this heading">#</a></h2>
+<p>Ingest and exgest consist of interchangable templated formats, see <a class="reference internal" href="requirement.html#supported-packing-formats"><span class="std std-ref">Supported memory packing formats</span></a>. Just this I/O layer understands how
+data is packed for RGB, V210, NV12, planar YUV, or another supported layout. Area and pointwise processing steps
+always see floating-point tiles, and have no knowledge of the underlying format. This also means that new packing
+formats can easily be added to the library.</p>
+<p>Two ingest APIs are provided – see Register-only API vs Shared-memory API above. Briefly:
+Register-only when every step is pointwise; Shared-memory when any step needs a halo
+(and then the whole fused kernel uses shared memory).</p>
+<p>Exgest clips to the output range by default. It can be omitted in cases where there is
+only a bit-depth change.</p>
+</section>
+<section id="extensibility-and-tuning-knobs">
+<h2>Extensibility and tuning knobs<a class="headerlink" href="#extensibility-and-tuning-knobs" title="Link to this heading">#</a></h2>
+<p>NPPDx separates what is configured from what the library derives:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 70.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Knob</p></th>
+<th class="head"><p>Role</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">TileSize&lt;W,</span> <span class="pre">H&gt;</span></code></p></td>
+<td><p><strong>User-facing.</strong> Primary tuning parameter for occupancy, shared-memory footprint, and
+arithmetic intensity.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">BlockDim&lt;...&gt;</span></code></p></td>
+<td><p><strong>User-facing.</strong> CUDA thread-block size for the step (1D: <code class="docutils literal notranslate"><span class="pre">Y</span></code> and <code class="docutils literal notranslate"><span class="pre">Z</span></code> must be <code class="docutils literal notranslate"><span class="pre">1</span></code>).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">SM&lt;arch&gt;</span></code></p></td>
+<td><p><strong>User-facing.</strong> Target architecture for code generation.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Cell size</p></td>
+<td><p><strong>Internal.</strong> How ingest, function, and exgest backends map work to threads within a
+tile; chosen for correctness and performance rather than exposed as a primary API knob.</p></td>
+</tr>
+<tr class="row-even"><td><p>Local halo</p></td>
+<td><p><strong>Derived.</strong> Neighborhood need for one step; available as a trait on that step
+(see <a class="reference internal" href="#terminology"><span class="std std-ref">Terminology</span></a>).</p></td>
+</tr>
+<tr class="row-odd"><td><p>Cumulative halo</p></td>
+<td><p><strong>User-facing</strong> for Shared-memory fused kernels: minimum additional data at ingest so every
+processing step can run without boundary-condition handling (see
+<a class="reference internal" href="#terminology"><span class="std std-ref">Terminology</span></a> and <a class="reference internal" href="../api/traits.html#traits-halos"><span class="std std-ref">Halos and step order</span></a>).</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="internal-resource-management">
+<h2>Internal resource management<a class="headerlink" href="#internal-resource-management" title="Link to this heading">#</a></h2>
+<p>Within a fused kernel, NPPDx tracks the resources the fused kernel needs:</p>
+<ul class="simple">
+<li><p><strong>Halos and tiles</strong>: ingest loads the extended tile; each step’s local halo shrinks the
+valid interior.</p></li>
+<li><p><strong>Temporary tile</strong>: steps that need temporary storage (for example resize) require a temp
+<code class="docutils literal notranslate"><span class="pre">TileStorage</span></code> tile.</p></li>
+<li><p><strong>Thread cells</strong>: algorithms execute on cells (groups of pixels) so neighboring work can
+share computation and register storage.</p></li>
+<li><p><strong>Tile bounds for area process</strong>: neighborhood steps such as box blur, resize, and
+related filters use compile-time tile-bound computation so each step knows which
+shared-memory region is valid without per-step boundary handling at image edges.</p></li>
+</ul>
+</section>
+<section id="next-steps">
+<h2>Next steps<a class="headerlink" href="#next-steps" title="Link to this heading">#</a></h2>
+<p>For further details on customizing NPPDx, consult:</p>
+<ul class="simple">
+<li><p><strong>Formats</strong>: <a class="reference internal" href="requirement.html#supported-packing-formats"><span class="std std-ref">supported packing formats</span></a> – ingest and exgest packing options</p></li>
+<li><p><strong>Operators</strong>: <a class="reference internal" href="../api/operators.html#operators-label"><span class="std std-ref">Operators</span></a> – MathDx <code class="docutils literal notranslate"><span class="pre">+</span></code> composition and function tags</p></li>
+<li><p><strong>Processing overview</strong>: <a class="reference internal" href="../api/processing_steps.html#processing-steps-label"><span class="std std-ref">Processing overview</span></a> – ingest, exgest, pointwise, and area steps</p></li>
+<li><p><strong>Performance</strong>: <a class="reference internal" href="performance.html#performance"><span class="std std-ref">Achieving High Performance</span></a> – tile size and fused kernel guidance</p></li>
+<li><p><strong>Examples</strong>: <a class="reference internal" href="../examples/index.html#examples"><span class="std std-ref">Examples</span></a> – color conversion, resize, and fused kernels</p></li>
+</ul>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="installation.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Installation Guide</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="performance.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Achieving High Performance</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+
+
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#terminology">Terminology</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#register-only-api-vs-shared-memory-api">Register-only API vs Shared-memory API</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nppdx-execution-model-ingest-compute-exgest">NPPDx Execution model: ingest, compute, exgest</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#specifying-ingest-and-exgest">Specifying ingest and exgest</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-minimal-kernel">A minimal kernel</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#querying-compile-time-traits">Querying compile-time traits</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#launching-the-kernel">Launching the kernel</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fusing-three-steps-ingest-color-convert-exgest">Fusing three steps: ingest, color_convert, exgest</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#shared-memory-tiles">Shared-memory tiles</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fused-kernels-with-halos">Fused kernels (with halos)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#miscellaneous-considerations">Miscellaneous considerations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extensibility-and-tuning-knobs">Extensibility and tuning knobs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#internal-resource-management">Internal resource management</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next steps</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+<a class="footer-brand logo" href="https://www.nvidia.com">
+  <img src="../_static/nvidia-logo-horiz-rgb-1c-blk-for-screen.svg" class="logo__image only-light" alt="NVIDIA"/>
+  <img src="../_static/nvidia-logo-horiz-rgb-1c-wht-for-screen.svg" class="logo__image only-dark" alt="NVIDIA"/>
+</a></div>
+      
+        <div class="footer-item">
+
+<div class="footer-links">
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/about-nvidia/privacy-policy/">Privacy Policy</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/about-nvidia/privacy-center/">Your Privacy Choices</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/about-nvidia/terms-of-service/">Terms of Service</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/about-nvidia/accessibility/">Accessibility</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/about-nvidia/company-policies/">Corporate Policies</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/product-security/">Product Security</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/contact/">Contact</a>
+  
+  
+  
+</div>
+</div>
+      
+        <div class="footer-item">
+
+
+
+
+  <p class="copyright">
+    
+      Copyright © 2025-2026, NVIDIA Corporation &amp; Affiliates. All rights reserved.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+  </body>
+</html>
