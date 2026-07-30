@@ -1,6 +1,6 @@
 # NPPDx
 
-[![Version](https://img.shields.io/badge/version-v0.1.0-blue)](#)
+[![Version](https://img.shields.io/badge/version-v0.1.1-blue)](#)
 [![License](https://img.shields.io/badge/license-Apache--2.0-green)](LICENSE.txt)
 [![Platforms](https://img.shields.io/badge/platform-linux--x86__64%20%7C%20windows--x64-lightgrey)](#prerequisites)
 [![CUDA](https://img.shields.io/badge/CUDA-%3E%3D13.0-76B900)](#prerequisites)
@@ -153,22 +153,8 @@ cmake -S /path/to/the_nppdx_app -B build-the-nppdx-app \
       -DCMAKE_PREFIX_PATH="${NPPDX_ROOT}"
 ```
 
-### Defined variables
-
-`nppdx_FOUND`
-: True if NPPDx was found.
-
-`nppdx_INCLUDE_DIR`, `nppdx_INCLUDE_DIRS`
-: NPPDx include directories (equivalent).
-
-`nppdx_commondx_INCLUDE_DIR`
-: commonDx include directory required by NPPDx.
-
-`nppdx_LIBRARIES`
-: Libraries to link (`nppdx::nppdx`).
-
-`nppdx_VERSION`
-: NPPDx version number.
+The configuration provides the imported INTERFACE target `nppdx::nppdx` and the
+variables `nppdx_INCLUDE_DIRS` and `nppdx_VERSION`.
 
 A CUDA kernel can compose and execute NPPDx operations directly:
 
