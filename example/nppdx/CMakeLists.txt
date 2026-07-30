@@ -25,7 +25,7 @@ if(NPPDX_BUILD_CUDA_EXAMPLES)
 endif()
 
 # NPPDx project
-project(nppdx_examples VERSION 0.1.0 LANGUAGES ${NPPDX_EXAMPLE_PROJECT_LANGUAGES})
+project(nppdx_examples VERSION 0.1.1 LANGUAGES ${NPPDX_EXAMPLE_PROJECT_LANGUAGES})
 
 if(PROJECT_IS_TOP_LEVEL)
     # Enable running examples with CTest
@@ -248,7 +248,7 @@ endif()
 # ###############################################################
 # add_nppdx_example
 # ###############################################################
-function(add_nppdx_example_impl GROUP_TARGET ENABLE_RELAXED_CONSTEXPR EXAMPLE_SOURCES DO_INSTALL)
+function(add_nppdx_example_impl GROUP_TARGET EXAMPLE_SOURCES DO_INSTALL)
     list(GET EXAMPLE_SOURCES 0 EXAMPLE_MAIN_SOURCE)
 
     # Get the absolute path and filename
@@ -279,8 +279,6 @@ function(add_nppdx_example_impl GROUP_TARGET ENABLE_RELAXED_CONSTEXPR EXAMPLE_SO
         PRIVATE
             # Keep compression target-local for standalone and source-tree builds.
             "$<$<COMPILE_LANGUAGE:CUDA>:SHELL:-Xfatbin -compress-all>"
-            # Required to support std::tuple in device code
-            "$<$<BOOL:${ENABLE_RELAXED_CONSTEXPR}>:$<$<COMPILE_LANGUAGE:CUDA>:SHELL:--expt-relaxed-constexpr>>"
     )
 
     set_tests_properties(${EXAMPLE_NAME}
@@ -303,13 +301,13 @@ function(add_nppdx_example_impl GROUP_TARGET ENABLE_RELAXED_CONSTEXPR EXAMPLE_SO
 endfunction()
 
 function(add_nppdx_example GROUP_TARGET  EXAMPLE_SOURCES)
-    add_nppdx_example_impl("${GROUP_TARGET}" True "${EXAMPLE_SOURCES}" "${NPPDX_INSTALL_EXAMPLES}")
+    add_nppdx_example_impl("${GROUP_TARGET}" "${EXAMPLE_SOURCES}" "${NPPDX_INSTALL_EXAMPLES}")
 endfunction()
 
 
 # Wrapper function for examples with NPP comparison
 function(add_nppdx_example_with_npp_impl GROUP_TARGET EXAMPLE_SOURCES DO_INSTALL)
-    add_nppdx_example_impl("${GROUP_TARGET}" True "${EXAMPLE_SOURCES}" "${DO_INSTALL}")
+    add_nppdx_example_impl("${GROUP_TARGET}" "${EXAMPLE_SOURCES}" "${DO_INSTALL}")
 
     # Get target name from source
     list(GET EXAMPLE_SOURCES 0 EXAMPLE_MAIN_SOURCE)

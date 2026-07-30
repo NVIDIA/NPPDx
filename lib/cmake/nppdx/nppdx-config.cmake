@@ -73,7 +73,7 @@ if(NOT TARGET nppdx::nppdx)
     endif()
 
     if(${nppdx_DEPENDENCY_COMMONDX_RESOLVED})
-        set(nppdx_VERSION "0.1.0")
+        set(nppdx_VERSION "0.1.1")
         # build: NPPDX-MANUAL-BUILD
         include("${CMAKE_CURRENT_LIST_DIR}/nppdx-targets.cmake")
 
@@ -83,12 +83,11 @@ if(NOT TARGET nppdx::nppdx)
 
         set_and_check(nppdx_INCLUDE_DIR  "${PACKAGE_PREFIX_DIR}/include")
         set_and_check(nppdx_INCLUDE_DIRS "${PACKAGE_PREFIX_DIR}/include")
-        set_and_check(nppdx_LIBRARY_DIRS "")
         set(nppdx_LIBRARIES nppdx::nppdx)
         check_required_components(nppdx)
 
         if(NOT ${CMAKE_FIND_PACKAGE_NAME}_FIND_QUIETLY)
-            message(STATUS "Found nppdx: (Version: 0.1.0, Include dirs: ${nppdx_INCLUDE_DIRS})")
+            message(STATUS "Found nppdx: (Version: 0.1.1, Include dirs: ${nppdx_INCLUDE_DIRS})")
         endif()
     else()
         set(${CMAKE_FIND_PACKAGE_NAME}_FOUND FALSE)

@@ -26,13 +26,13 @@
 /// NPPDX_VERSION / 10000 - major version <br/>
 /// NPPDX_VERSION / 100 % 100 - minor version <br/>
 /// NPPDX_VERSION % 100 - patch level <br/>
-#define NPPDX_VERSION 100
+#define NPPDX_VERSION 101
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 #define NPPDX_VERSION_MAJOR 0
 #define NPPDX_VERSION_MINOR 1
-#define NPPDX_VERSION_PATCH 0
+#define NPPDX_VERSION_PATCH 1
 
 #endif // DOXYGEN_SHOULD_SKIP_THIS
 

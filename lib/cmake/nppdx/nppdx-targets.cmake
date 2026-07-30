@@ -60,6 +60,7 @@ add_library(nppdx::nppdx INTERFACE IMPORTED)
 
 set_target_properties(nppdx::nppdx PROPERTIES
   INTERFACE_COMPILE_FEATURES "cxx_std_17;cuda_std_17"
+  INTERFACE_COMPILE_OPTIONS "\$<\$<COMPILE_LANGUAGE:CUDA>:--expt-relaxed-constexpr>"
   INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/include"
 )
 
