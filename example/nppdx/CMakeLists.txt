@@ -25,7 +25,7 @@ if(NPPDX_BUILD_CUDA_EXAMPLES)
 endif()
 
 # NPPDx project
-project(nppdx_examples VERSION 0.1.1 LANGUAGES ${NPPDX_EXAMPLE_PROJECT_LANGUAGES})
+project(nppdx_examples VERSION 0.1.2 LANGUAGES ${NPPDX_EXAMPLE_PROJECT_LANGUAGES})
 
 if(PROJECT_IS_TOP_LEVEL)
     # Enable running examples with CTest
