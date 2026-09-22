@@ -1,6 +1,6 @@
 # NPPDx
 
-[![Version](https://img.shields.io/badge/version-v0.1.1-blue)](#)
+[![Version](https://img.shields.io/badge/version-v0.1.2-blue)](#)
 [![License](https://img.shields.io/badge/license-Apache--2.0-green)](LICENSE.txt)
 [![Platforms](https://img.shields.io/badge/platform-linux--x86__64%20%7C%20windows--x64-lightgrey)](#prerequisites)
 [![CUDA](https://img.shields.io/badge/CUDA-%3E%3D13.0-76B900)](#prerequisites)
@@ -80,6 +80,7 @@ The repository contains:
 - `README.md`: this README.
 - `LICENSE.txt`: license text.
 - `CONTRIBUTING.md`: contribution guidelines.
+- `SECURITY.md`: security guidelines.
 - `include/`: NPPDx headers and bundled commonDx headers.
 - `lib/cmake/nppdx/`: NPPDx CMake package configuration files.
 - `lib/cmake/commondx/`: commonDx CMake package configuration files.
@@ -248,7 +249,8 @@ through headers included by it:
 - Math and utility device functions used by the headers: `floor`, `floorf`,
   `ceil`, `ceilf`, `trunc`, `truncf`, `fabs`, `fabsf`, `sqrtf`, `rintf`,
   `fminf`, `fmaxf`, `__saturatef`, `__sinf`, `__cosf`, `__expf`, `__powf`,
-  `__logf`, and device `printf`.
+  `__logf`, `__byte_perm(unsigned int, unsigned int, unsigned int)` for YUV
+  byte reordering, and device `printf`.
 
 ## License
 

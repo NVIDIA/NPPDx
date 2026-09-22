@@ -37,10 +37,10 @@ namespace nppdx {
         //----------------------------------------------------------------------------
         // PACKED RGB FORMATS
         //----------------------------------------------------------------------------
-        rgb24,  // 8-bit packed rgb format
-        rgb10,  // 10-bit packed format. A 10-bit value is stored in the most 
-                // significant bits of uint16_t type. Little endian.
-        rgb16,  // 16-bit packed format. Little endian.
+        rgb24, // 8-bit packed rgb format
+        rgb10, // 10-bit packed format. A 10-bit value is stored in the most
+               // significant bits of uint16_t type. Little endian.
+        rgb16, // 16-bit packed format. Little endian.
 
         //----------------------------------------------------------------------------
         // BGR variants
@@ -50,11 +50,11 @@ namespace nppdx {
         // PACKED YUV FORMATS
         // YUV 4:2:2
         //----------------------------------------------------------------------------
-        y210, // 10-bit. The channels' order is Y0 U0 Y1 V0. A 10-bit value is stored 
-              // in the most significant bits of uint16_t type. 
+        y210, // 10-bit. The channels' order is Y0 U01 Y1 V01. A 10-bit value is stored
+              // in the most significant bits of uint16_t type.
         uyvp, // 10-bit packed into 5 bytes per 2 pixels
         v210, // 10-bit broadcast V210: 16 bytes per 6 pixels (4 LE uint32_t words)
-        yuv2, // 8-bit packed into 4 bytes per 2 pixels. The channels' order is 
+        yuv2, // 8-bit packed into 4 bytes per 2 pixels. The channels' order is
               // Y0 U0 Y1 V0.
 
         //----------------------------------------------------------------------------
@@ -62,8 +62,8 @@ namespace nppdx {
         // YUV 4:2:0
         //----------------------------------------------------------------------------
         nv12, // 8-bit format
-        p010, // 10-bit format. A 10-bit value is stored in the most significant bits 
-              // of uint16_t type. Little endian. 
+        p010, // 10-bit format. A 10-bit value is stored in the most significant bits
+              // of uint16_t type. Little endian.
 
         //----------------------------------------------------------------------------
         // SEMI-PLANAR FORMATS
@@ -75,17 +75,17 @@ namespace nppdx {
         //----------------------------------------------------------------------------
         // FULLY PLANAR FORMATS
         //----------------------------------------------------------------------------
-        rgbp,       // 8-bit format
-        bgrp,       // 8-bit format
-        yuv420p,    // 8-bit format with 4:2:0 subsampling
-        yuv420p10,  // 10-bit format with 4:2:0 subsampling. A 10-bit value is stored 
-                    // in the least significant bits of uint16_t type. Little endian.
-        yuv422p,    // 8-bit format with 4:2:2 subsampling
-        yuv422p10,  // 10-bit format with 4:2:2 subsampling. A 10-bit value is stored 
-                    // in the least significant bits of uint16_t type. Little endian.
-        yuv444p,    // 8-bit format without subsampling
-        yuv444p10   // 10-bit format without subsampling. A 10-bit value is stored 
-                    // in the least significant bits of uint16_t type. Little endian.
+        rgbp,      // 8-bit format
+        bgrp,      // 8-bit format
+        yuv420p,   // 8-bit format with 4:2:0 subsampling
+        yuv420p10, // 10-bit format with 4:2:0 subsampling. A 10-bit value is stored
+                   // in the least significant bits of uint16_t type. Little endian.
+        yuv422p,   // 8-bit format with 4:2:2 subsampling
+        yuv422p10, // 10-bit format with 4:2:2 subsampling. A 10-bit value is stored
+                   // in the least significant bits of uint16_t type. Little endian.
+        yuv444p,   // 8-bit format without subsampling
+        yuv444p10  // 10-bit format without subsampling. A 10-bit value is stored
+                   // in the least significant bits of uint16_t type. Little endian.
     };
 
     // Note for developers: Whenever adding or removing packing_format enumerators,
@@ -128,7 +128,7 @@ namespace nppdx {
             if (plane_idx == 0) {
                 return width * bytes_per_pixel;
             }
-            
+
             // Semi-planar NV-family interleaves U and V in the chroma plane (2 samples per chroma
             // column), so the row holds 2 * (width / subsampling.x) samples. The 4:2:0 (nv12/p010)
             // and 4:2:2 (nv16/p216) variants share this packing; they differ only in vertical
@@ -232,7 +232,7 @@ namespace nppdx {
                                              /*planes=*/2,
                                              /*bytes_per_pixel=*/1,
                                              /*default_color_space=*/color_space::yuv_bt601};
-            case packing_format::p010: 
+            case packing_format::p010:
                 return packing_format_props {/*format=*/packing_format::p010,
                                              /*channels=*/3,
                                              /*bits_per_channel=*/10,
@@ -240,7 +240,7 @@ namespace nppdx {
                                              /*planes=*/2,
                                              /*bytes_per_pixel=*/2,
                                              /*default_color_space=*/color_space::yuv_bt601};
-            case packing_format::nv16: 
+            case packing_format::nv16:
                 return packing_format_props {/*format=*/packing_format::nv16,
                                              /*channels=*/3,
                                              /*bits_per_channel=*/8,
@@ -248,7 +248,7 @@ namespace nppdx {
                                              /*planes=*/2,
                                              /*bytes_per_pixel=*/1,
                                              /*default_color_space=*/color_space::yuv_bt601};
-            case packing_format::p216: 
+            case packing_format::p216:
                 return packing_format_props {/*format=*/packing_format::p216,
                                              /*channels=*/3,
                                              /*bits_per_channel=*/16,
@@ -264,7 +264,7 @@ namespace nppdx {
                                              /*planes=*/3,
                                              /*bytes_per_pixel=*/1,
                                              /*default_color_space=*/color_space::rgb};
-            case packing_format::rgbp: 
+            case packing_format::rgbp:
                 return packing_format_props {/*format=*/packing_format::rgbp,
                                              /*channels=*/3,
                                              /*bits_per_channel=*/8,
