@@ -279,8 +279,12 @@ namespace nppdx {
                 float*        ch1        = cell.channel_ptr(1);
                 float*        ch2        = cell.channel_ptr(2);
                 const int     chvshift   = uint32_t(VDecimate);
-                const int32_t maxChromaY = VDecimate ? (imageHeight / 2) - 1 : imageHeight - 1;
-                const int32_t maxChromaX = (imageWidth / 2) - 1;
+                // Clamp to >= 0: for degenerate dimensions (height == 1 for 4:2:0, width == 1) the
+                // un-clamped maximum would be -1, and chromaY/chromaX would select a row/column one
+                // before the start of the chroma planes, i.e. an out-of-bounds read. Mirror the
+                // nppdx_max(0, ...) guard used for rightChromaX below.
+                const int32_t maxChromaY = nppdx_max(0, VDecimate ? (imageHeight / 2) - 1 : imageHeight - 1);
+                const int32_t maxChromaX = nppdx_max(0, (imageWidth / 2) - 1);
                 const bool    needLeft   = (basePixelX < 0);
 
                 // Right edge (for halo): odd width = last Y + previous chroma; even = last pixel.

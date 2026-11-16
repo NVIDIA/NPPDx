@@ -829,43 +829,15 @@ namespace nppdx {
 
                         if (cx < CellW - 1) {
                             const int new_col = tile_x_base + static_cast<int>(cx) + 3;
-                            // Load into slot cx%5 (next window's rightmost). Explicit branches - no divergence when loop unrolled.
-                            if (cx == 0 || cx == 5 || cx == 10) {
-                                row0[0] = (float)channels.channel(c)(tile_y_base - 2, new_col);
-                                row1[0] = (float)channels.channel(c)(tile_y_base - 1, new_col);
-                                row2[0] = (float)channels.channel(c)(tile_y_base, new_col);
-                                row3[0] = (float)channels.channel(c)(tile_y_base + 1, new_col);
-                                row4[0] = (float)channels.channel(c)(tile_y_base + 2, new_col);
-                                ce4(row1[0], row2[0], row3[0], row4[0]);
-                            } else if (cx == 1 || cx == 6 || cx == 11) {
-                                row0[1] = (float)channels.channel(c)(tile_y_base - 2, new_col);
-                                row1[1] = (float)channels.channel(c)(tile_y_base - 1, new_col);
-                                row2[1] = (float)channels.channel(c)(tile_y_base, new_col);
-                                row3[1] = (float)channels.channel(c)(tile_y_base + 1, new_col);
-                                row4[1] = (float)channels.channel(c)(tile_y_base + 2, new_col);
-                                ce4(row1[1], row2[1], row3[1], row4[1]);
-                            } else if (cx == 2 || cx == 7 || cx == 12) {
-                                row0[2] = (float)channels.channel(c)(tile_y_base - 2, new_col);
-                                row1[2] = (float)channels.channel(c)(tile_y_base - 1, new_col);
-                                row2[2] = (float)channels.channel(c)(tile_y_base, new_col);
-                                row3[2] = (float)channels.channel(c)(tile_y_base + 1, new_col);
-                                row4[2] = (float)channels.channel(c)(tile_y_base + 2, new_col);
-                                ce4(row1[2], row2[2], row3[2], row4[2]);
-                            } else if (cx == 3 || cx == 8 || cx == 13) {
-                                row0[3] = (float)channels.channel(c)(tile_y_base - 2, new_col);
-                                row1[3] = (float)channels.channel(c)(tile_y_base - 1, new_col);
-                                row2[3] = (float)channels.channel(c)(tile_y_base, new_col);
-                                row3[3] = (float)channels.channel(c)(tile_y_base + 1, new_col);
-                                row4[3] = (float)channels.channel(c)(tile_y_base + 2, new_col);
-                                ce4(row1[3], row2[3], row3[3], row4[3]);
-                            } else {
-                                row0[4] = (float)channels.channel(c)(tile_y_base - 2, new_col);
-                                row1[4] = (float)channels.channel(c)(tile_y_base - 1, new_col);
-                                row2[4] = (float)channels.channel(c)(tile_y_base, new_col);
-                                row3[4] = (float)channels.channel(c)(tile_y_base + 1, new_col);
-                                row4[4] = (float)channels.channel(c)(tile_y_base + 2, new_col);
-                                ce4(row1[4], row2[4], row3[4], row4[4]);
-                            }
+                            // Load into slot cx%5 (next window's rightmost). The slot is a compile-time
+                            // constant per unrolled iteration, so no divergence and no runtime modulo.
+                            const int slot = static_cast<int>(cx) % ColSlots;
+                            row0[slot] = (float)channels.channel(c)(tile_y_base - 2, new_col);
+                            row1[slot] = (float)channels.channel(c)(tile_y_base - 1, new_col);
+                            row2[slot] = (float)channels.channel(c)(tile_y_base, new_col);
+                            row3[slot] = (float)channels.channel(c)(tile_y_base + 1, new_col);
+                            row4[slot] = (float)channels.channel(c)(tile_y_base + 2, new_col);
+                            ce4(row1[slot], row2[slot], row3[slot], row4[slot]);
                         }
                     }
                 }
